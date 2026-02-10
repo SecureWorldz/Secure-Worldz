@@ -484,15 +484,15 @@ export default function LandingPage() {
         {/* Founder Section */}
         <section id="founder" className="w-full py-20 md:py-32 relative overflow-hidden bg-zinc-50/50 dark:bg-muted/30">
           <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black_70%,transparent_100%)]"></div>
-          <div className="container px-4 md:px-6 relative z-10">
+          <div className="max-w-[1400px] mx-auto px-4 md:px-6 relative z-10">
             <motion.div
               whileHover={{ y: -5, scale: 1.01 }}
               transition={{ duration: 0.3 }}
             >
               <Card className="overflow-hidden border border-zinc-200 dark:border-border/40 bg-white dark:bg-zinc-950 text-foreground shadow-2xl rounded-[2rem] md:rounded-[3rem] transition-shadow duration-300 hover:shadow-primary/5">
                 <CardContent className="p-0">
-                  <div className="grid md:grid-cols-2">
-                    <div className="relative h-[400px] md:h-auto overflow-hidden">
+                  <div className="grid md:grid-cols-5">
+                    <div className="md:col-span-2 relative h-[400px] md:h-auto overflow-hidden">
                       <a href="https://cyberjai-v2.vercel.app" target="blank" rel="noopener noreferrer">
                         <Image
                           src="/Founder.jpeg"
@@ -502,7 +502,7 @@ export default function LandingPage() {
                         />
                       </a>
                     </div>
-                    <div className="p-8 md:p-12 lg:p-16 flex flex-col justify-center">
+                    <div className="md:col-span-3 p-6 md:p-10 lg:p-12 flex flex-col justify-center">
                       <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -510,9 +510,9 @@ export default function LandingPage() {
                         transition={{ duration: 0.5 }}
                       >
                         <a href="https://cyberjai-v2.vercel.app" target="blank" rel="noopener noreferrer" className="text-3xl md:text-4xl lg:text-5xl font-bold hover:underline cursor-pointer mb-3 tracking-tight text-zinc-900 dark:text-white block transition-all duration-300 hover:scale-105">Jaiganesh Lakshmanan</a>
-                        <p className="text-zinc-500 dark:text-primary text-lg md:text-xl font-medium mb-8">Founder and CEO of Secure Worldz</p>
+                        <p className="text-zinc-500 dark:text-primary text-lg md:text-xl font-medium mb-4">Founder and CEO of Secure Worldz</p>
 
-                        <div className="flex flex-wrap gap-2.5 mb-10">
+                        <div className="flex flex-wrap gap-2.5 mb-6">
                           {["Technology speaker", "Ethical hacker", "AI developer", "Business growth speaker"].map((tag) => (
                             <Badge key={tag} variant="secondary" className="bg-zinc-100 text-zinc-900 dark:bg-white/10 dark:text-white/90 border-none hover:bg-zinc-200 dark:hover:bg-white/20 px-4 py-1.5 text-sm font-normal backdrop-blur-sm">
                               {tag}
@@ -520,12 +520,12 @@ export default function LandingPage() {
                           ))}
                         </div>
 
-                        <p className="text-zinc-600 dark:text-muted-foreground text-lg leading-relaxed mb-10 max-w-2xl">
+                        <p className="text-zinc-600 dark:text-muted-foreground text-lg leading-relaxed mb-6 max-w-3xl">
                           With over 10 years of experience in technology and cybersecurity, Jaiganesh Lakshmanan has worked with Fortune 10+ companies to strengthen their security infrastructure. As the founder of Drago and Proworldz, he has trained over 1,000 students across cybersecurity, ethical hacking, AI development, and business growth. Jaiganesh specializes in vulnerability assessment and penetration testing, having discovered critical security flaws in major financial institutions.
                         </p>
 
-                        <div className="pl-6 border-l-2 border-primary/50 relative mb-10">
-                          <p className="text-xl md:text-2xl italic text-zinc-700 dark:text-foreground/90 font-light leading-snug">
+                        <div className="pl-6 border-l-2 border-primary/50 relative mb-6">
+                          <p className="text-lg md:text-xl italic text-zinc-700 dark:text-foreground/90 font-light leading-snug">
                             "Security is not a product, but a process. My goal is to teach students how to think like both defender and attacker—and to understand how technology drives real business value."
                           </p>
                         </div>
