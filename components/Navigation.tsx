@@ -94,7 +94,8 @@ const Navigation: React.FC<NavigationProps> = ({ className = '' }) => {
           <Link
             className="flex h-8 md:h-10 rounded-full text-primary-foreground bg-primary hover:bg-black hover:text-white dark:hover:bg-primary/90 px-3 md:px-6 items-center gap-2 md:gap-3 text-xs md:text-sm group flex-shrink-0 transition-colors"
             title="Get Started"
-            href="#services"
+            href="https://tally.so/r/eqe2Yq"
+            target='_blank'
           >
             <span>Get Started</span>
             <svg
@@ -145,8 +146,8 @@ const Navigation: React.FC<NavigationProps> = ({ className = '' }) => {
 
       {/* Mobile Menu */}
       <div className={`md:hidden fixed top-20 right-4 left-4 bg-background/40 dark:bg-background/40 backdrop-blur-md rounded-2xl z-50 border border-border/20 transition-all duration-300 ${isMobileMenuOpen
-          ? 'opacity-100 translate-y-0 visible'
-          : 'opacity-0 -translate-y-4 invisible'
+        ? 'opacity-100 translate-y-0 visible'
+        : 'opacity-0 -translate-y-4 invisible'
         }`}>
         <div className="p-6 space-y-4">
           {/* Mobile Navigation Links */}

@@ -129,7 +129,8 @@ export default function LandingPage() {
                 We're not just another tech company throwing buzzwords around. We're builders, breakers, and problem-solvers who actually get the work done.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="rounded-full h-12 px-8 text-base hover:bg-black hover:text-white dark:hover:bg-primary/90 dark:hover:text-black">
+                <Button onClick={() => window.open("https://tally.so/r/eqe2Yq", "_blank")} size="lg" className="rounded-full h-12 px-8 text-base hover:bg-black hover:text-white dark:hover:bg-primary/90 dark:hover:text-black">
+
                   Get Started
                   <ArrowRight className="ml-2 size-4" />
                 </Button>
@@ -893,12 +894,12 @@ export default function LandingPage() {
                 Whether you need bulletproof security, a website that converts, AI that saves time, or training that actually works—we're here to help. Let's talk about your goals and build something great together.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mt-4">
-                <Button size="lg" variant="secondary" className="rounded-full h-12 px-8 text-base hover:bg-black hover:text-white dark:hover:bg-primary/90 dark:hover:text-black">
+                <Button onClick={() => window.open("https://tally.so/r/eqe2Yq", "_blank")} size="lg" variant="secondary" className="rounded-full h-12 px-8 text-base hover:bg-black hover:text-white dark:hover:bg-primary/90 dark:hover:text-black">
                   Schedule a Free Consultation
                   <ArrowRight className="ml-2 size-4" />
                 </Button>
                 <Button
-                  size="lg"
+                  onClick={() => window.open("mailto:info.secureworldz@gmail.com", "_blank")}
                   variant="outline"
                   className="rounded-full h-12 px-8 text-base bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary dark:border-black dark:text-black dark:hover:bg-white dark:hover:text-black dark:hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] dark:transition-all dark:duration-300"
                 >
@@ -906,10 +907,7 @@ export default function LandingPage() {
                 </Button>
               </div>
               <div className="mt-6 space-y-2">
-                <p className="text-sm text-primary-foreground/80">
-                  <a href="mailto:info.secureworldz@gmail.com" className="underline hover:text-primary-foreground">info.secureworldz@gmail.com</a>
-                </p>
-                <p className="text-xs text-primary-foreground/70">
+                <p className="text-lg text-primary-foreground/70">
                   Serving clients globally
                 </p>
               </div>
