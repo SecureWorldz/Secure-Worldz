@@ -64,16 +64,16 @@ const Navigation: React.FC<NavigationProps> = ({ className = '' }) => {
             />
           </div>
           <span className='text-lg md:text-xl text-foreground font-bold'>
-            SECURE WORLDZ
+            SECUREWORLDZ
           </span>
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex gap-8" style={{ opacity: 1 }}>
           {navLinks.map((link, index) => (
-            <Link 
+            <Link
               key={index}
-              className="text-sm group relative transition-opacity duration-200 ease-in-out hover:opacity-100 opacity-70 whitespace-nowrap text-foreground" 
+              className="text-sm group relative transition-opacity duration-200 ease-in-out hover:opacity-100 opacity-70 whitespace-nowrap text-foreground"
               href={link.href}
             >
               <div className="absolute rounded-full top-1/2 -translate-y-1/2 left-0 -translate-x-3 h-1.5 w-1.5 bg-current transition-all duration-300 ease-in-out group-hover:opacity-100 opacity-0 group-hover:scale-100 scale-50"></div>
@@ -91,22 +91,22 @@ const Navigation: React.FC<NavigationProps> = ({ className = '' }) => {
           >
             {mounted && theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
           </button>
-          <Link 
-            className="flex h-8 md:h-10 rounded-full text-primary-foreground bg-primary hover:bg-black hover:text-white dark:hover:bg-primary/90 px-3 md:px-6 items-center gap-2 md:gap-3 text-xs md:text-sm group flex-shrink-0 transition-colors" 
-            title="Get Started" 
+          <Link
+            className="flex h-8 md:h-10 rounded-full text-primary-foreground bg-primary hover:bg-black hover:text-white dark:hover:bg-primary/90 px-3 md:px-6 items-center gap-2 md:gap-3 text-xs md:text-sm group flex-shrink-0 transition-colors"
+            title="Get Started"
             href="#services"
           >
             <span>Get Started</span>
-            <svg 
-              className="transition-transform duration-200 ease-in-out group-hover:translate-x-0.5 w-3 h-2.5 md:w-4 md:h-3" 
-              width="15" 
-              height="12" 
-              viewBox="0 0 15 12" 
-              fill="none" 
+            <svg
+              className="transition-transform duration-200 ease-in-out group-hover:translate-x-0.5 w-3 h-2.5 md:w-4 md:h-3"
+              width="15"
+              height="12"
+              viewBox="0 0 15 12"
+              fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path 
-                d="M14.4688 6.21191C14.4688 6.39746 14.3955 6.56104 14.249 6.70264L9.37842 11.5586C9.23682 11.6953 9.07812 11.7637 8.90234 11.7637C8.72168 11.7637 8.57031 11.7026 8.44824 11.5806C8.32617 11.4634 8.26514 11.3145 8.26514 11.1338C8.26514 11.0459 8.27979 10.9629 8.30908 10.8848C8.33838 10.8018 8.38232 10.731 8.44092 10.6724L10.0815 9.00244L12.9893 6.3584L13.1357 6.71729L10.7773 6.86377H1.51221C1.32178 6.86377 1.16553 6.80273 1.04346 6.68066C0.92627 6.55859 0.867676 6.40234 0.867676 6.21191C0.867676 6.02148 0.92627 5.86523 1.04346 5.74316C1.16553 5.62109 1.32178 5.56006 1.51221 5.56006H10.7773L13.1357 5.70654L12.9893 6.07275L10.0815 3.42139L8.44092 1.75146C8.38232 1.69287 8.33838 1.62451 8.30908 1.54639C8.27979 1.46338 8.26514 1.37793 8.26514 1.29004C8.26514 1.10937 8.32617 0.960449 8.44824 0.843262C8.57031 0.721191 8.72168 0.660156 8.90234 0.660156C8.99023 0.660156 9.07324 0.677246 9.15137 0.711426C9.23438 0.745605 9.31494 0.801758 9.39307 0.879883L14.249 5.72119C14.3955 5.86279 14.4688 6.02637 14.4688 6.21191Z" 
+              <path
+                d="M14.4688 6.21191C14.4688 6.39746 14.3955 6.56104 14.249 6.70264L9.37842 11.5586C9.23682 11.6953 9.07812 11.7637 8.90234 11.7637C8.72168 11.7637 8.57031 11.7026 8.44824 11.5806C8.32617 11.4634 8.26514 11.3145 8.26514 11.1338C8.26514 11.0459 8.27979 10.9629 8.30908 10.8848C8.33838 10.8018 8.38232 10.731 8.44092 10.6724L10.0815 9.00244L12.9893 6.3584L13.1357 6.71729L10.7773 6.86377H1.51221C1.32178 6.86377 1.16553 6.80273 1.04346 6.68066C0.92627 6.55859 0.867676 6.40234 0.867676 6.21191C0.867676 6.02148 0.92627 5.86523 1.04346 5.74316C1.16553 5.62109 1.32178 5.56006 1.51221 5.56006H10.7773L13.1357 5.70654L12.9893 6.07275L10.0815 3.42139L8.44092 1.75146C8.38232 1.69287 8.33838 1.62451 8.30908 1.54639C8.27979 1.46338 8.26514 1.37793 8.26514 1.29004C8.26514 1.10937 8.32617 0.960449 8.44824 0.843262C8.57031 0.721191 8.72168 0.660156 8.90234 0.660156C8.99023 0.660156 9.07324 0.677246 9.15137 0.711426C9.23438 0.745605 9.31494 0.801758 9.39307 0.879883L14.249 5.72119C14.3955 5.86279 14.4688 6.02637 14.4688 6.21191Z"
                 fill="currentColor"
               />
             </svg>
@@ -114,7 +114,7 @@ const Navigation: React.FC<NavigationProps> = ({ className = '' }) => {
         </div>
 
         {/* Mobile Menu Toggle Button */}
-        <button 
+        <button
           className="md:hidden flex items-center justify-center w-8 h-8 rounded-full bg-background/30 dark:bg-background/30 backdrop-blur-md transition-all duration-300 border border-border/20"
           onClick={toggleMobileMenu}
           aria-label="Toggle mobile menu"
@@ -144,18 +144,17 @@ const Navigation: React.FC<NavigationProps> = ({ className = '' }) => {
       )}
 
       {/* Mobile Menu */}
-      <div className={`md:hidden fixed top-20 right-4 left-4 bg-background/40 dark:bg-background/40 backdrop-blur-md rounded-2xl z-50 border border-border/20 transition-all duration-300 ${
-        isMobileMenuOpen 
-          ? 'opacity-100 translate-y-0 visible' 
+      <div className={`md:hidden fixed top-20 right-4 left-4 bg-background/40 dark:bg-background/40 backdrop-blur-md rounded-2xl z-50 border border-border/20 transition-all duration-300 ${isMobileMenuOpen
+          ? 'opacity-100 translate-y-0 visible'
           : 'opacity-0 -translate-y-4 invisible'
-      }`}>
+        }`}>
         <div className="p-6 space-y-4">
           {/* Mobile Navigation Links */}
           <nav className="space-y-3">
             {navLinks.map((link, index) => (
-              <Link 
+              <Link
                 key={index}
-                className="block text-foreground text-lg font-medium hover:text-muted-foreground transition-colors py-2" 
+                className="block text-foreground text-lg font-medium hover:text-muted-foreground transition-colors py-2"
                 href={link.href}
                 onClick={toggleMobileMenu}
               >
@@ -173,23 +172,23 @@ const Navigation: React.FC<NavigationProps> = ({ className = '' }) => {
             >
               {mounted && theme === "dark" ? <Sun className="size-5" /> : <Moon className="size-5" />}
             </button>
-            <Link 
-              className="flex flex-1 h-12 rounded-full text-primary-foreground bg-primary hover:bg-black hover:text-white dark:hover:bg-primary/90 items-center justify-center gap-3 text-sm group transition-colors" 
-              title="Get Started" 
+            <Link
+              className="flex flex-1 h-12 rounded-full text-primary-foreground bg-primary hover:bg-black hover:text-white dark:hover:bg-primary/90 items-center justify-center gap-3 text-sm group transition-colors"
+              title="Get Started"
               href="#services"
               onClick={toggleMobileMenu}
             >
               Get Started
-              <svg 
-                className="transition-transform duration-200 ease-in-out group-hover:translate-x-0.5 w-4 h-3" 
-                width="15" 
-                height="12" 
-                viewBox="0 0 15 12" 
-                fill="none" 
+              <svg
+                className="transition-transform duration-200 ease-in-out group-hover:translate-x-0.5 w-4 h-3"
+                width="15"
+                height="12"
+                viewBox="0 0 15 12"
+                fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path 
-                  d="M14.4688 6.21191C14.4688 6.39746 14.3955 6.56104 14.249 6.70264L9.37842 11.5586C9.23682 11.6953 9.07812 11.7637 8.90234 11.7637C8.72168 11.7637 8.57031 11.7026 8.44824 11.5806C8.32617 11.4634 8.26514 11.3145 8.26514 11.1338C8.26514 11.0459 8.27979 10.9629 8.30908 10.8848C8.33838 10.8018 8.38232 10.731 8.44092 10.6724L10.0815 9.00244L12.9893 6.3584L13.1357 6.71729L10.7773 6.86377H1.51221C1.32178 6.86377 1.16553 6.80273 1.04346 6.68066C0.92627 6.55859 0.867676 6.40234 0.867676 6.21191C0.867676 6.02148 0.92627 5.86523 1.04346 5.74316C1.16553 5.62109 1.32178 5.56006 1.51221 5.56006H10.7773L13.1357 5.70654L12.9893 6.07275L10.0815 3.42139L8.44092 1.75146C8.38232 1.69287 8.33838 1.62451 8.30908 1.54639C8.27979 1.46338 8.26514 1.37793 8.26514 1.29004C8.26514 1.10937 8.32617 0.960449 8.44824 0.843262C8.57031 0.721191 8.72168 0.660156 8.90234 0.660156C8.99023 0.660156 9.07324 0.677246 9.15137 0.711426C9.23438 0.745605 9.31494 0.801758 9.39307 0.879883L14.249 5.72119C14.3955 5.86279 14.4688 6.02637 14.4688 6.21191Z" 
+                <path
+                  d="M14.4688 6.21191C14.4688 6.39746 14.3955 6.56104 14.249 6.70264L9.37842 11.5586C9.23682 11.6953 9.07812 11.7637 8.90234 11.7637C8.72168 11.7637 8.57031 11.7026 8.44824 11.5806C8.32617 11.4634 8.26514 11.3145 8.26514 11.1338C8.26514 11.0459 8.27979 10.9629 8.30908 10.8848C8.33838 10.8018 8.38232 10.731 8.44092 10.6724L10.0815 9.00244L12.9893 6.3584L13.1357 6.71729L10.7773 6.86377H1.51221C1.32178 6.86377 1.16553 6.80273 1.04346 6.68066C0.92627 6.55859 0.867676 6.40234 0.867676 6.21191C0.867676 6.02148 0.92627 5.86523 1.04346 5.74316C1.16553 5.62109 1.32178 5.56006 1.51221 5.56006H10.7773L13.1357 5.70654L12.9893 6.07275L10.0815 3.42139L8.44092 1.75146C8.38232 1.69287 8.33838 1.62451 8.30908 1.54639C8.27979 1.46338 8.26514 1.37793 8.26514 1.29004C8.26514 1.10937 8.32617 0.960449 8.44824 0.843262C8.57031 0.721191 8.72168 0.660156 8.90234 0.660156C8.99023 0.660156 9.07324 0.677246 9.15137 0.711426C9.23438 0.745605 9.31494 0.801758 9.39307 0.879883L14.249 5.72119C14.3955 5.86279 14.4688 6.02637 14.4688 6.21191Z"
                   fill="currentColor"
                 />
               </svg>

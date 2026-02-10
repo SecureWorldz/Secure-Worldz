@@ -1,6 +1,5 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion } from "framer-motion"
@@ -108,7 +107,7 @@ export default function LandingPage() {
       <main className="flex-1 pt-20 md:pt-24">
         {/* Hero Section */}
         <section className="w-full py-20 md:py-32 lg:py-40 overflow-hidden relative">
-          <div className="absolute inset-0 -z-10 mx-4 md:mx-8 lg:mx-16 my-8 md:my-12 lg:my-16 h-[calc(100%-4rem)] md:h-[calc(100%-6rem)] lg:h-[calc(100%-8rem)] w-[calc(100%-2rem)] md:w-[calc(100%-4rem)] lg:w-[calc(100%-8rem)] bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] rounded-[3rem] md:rounded-[4rem] lg:rounded-[5rem] [mask-image:radial-gradient(ellipse_90%_90%_at_50%_50%,black_70%,transparent_100%)]"></div>
+          <div className="absolute inset-0 -z-10 bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_90%_90%_at_50%_50%,black_70%,transparent_100%)]"></div>
           <div className="container px-4 md:px-6 relative z-10">
 
             <motion.div
@@ -314,8 +313,8 @@ export default function LandingPage() {
         </section>
 
         {/* How It Works Section */}
-        <section id="how-it-works" className="w-full py-20 md:py-32 bg-muted/30 relative overflow-hidden">
-          <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_40%,transparent_100%)]"></div>
+        <section id="how-it-works" className="w-full py-20 md:py-32 relative overflow-hidden bg-black text-white">
+          <div className="absolute inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black_70%,transparent_100%)]"></div>
 
           <div className="container px-4 md:px-6 relative">
             <motion.div
@@ -325,10 +324,10 @@ export default function LandingPage() {
               transition={{ duration: 0.5 }}
               className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
             >
-              <Badge className="rounded-full px-4 py-1.5 text-sm font-medium" variant="secondary">
+              <Badge className="rounded-full px-4 py-1.5 text-sm font-medium bg-white/10 text-white border-white/20 hover:bg-white/20 backdrop-blur-sm" variant="outline">
                 How We Work
               </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Simple onboarding, measurable outcomes</h2>
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white">Simple onboarding, measurable outcomes</h2>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-8 md:gap-12 relative">
@@ -376,26 +375,28 @@ export default function LandingPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="relative z-10 flex flex-col items-center text-center space-y-4"
+                  className="relative z-10 flex flex-col items-center text-center space-y-6"
                 >
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary/70 text-primary-foreground text-xl font-bold shadow-lg">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white text-black text-xl font-bold shadow-[0_0_20px_rgba(255,255,255,0.2)]">
                     {step.step}
                   </div>
-                  <h3 className="text-xl font-bold italic mb-2">{step.title}</h3>
-                  <h4 className="text-lg font-semibold mb-3">{step.headline}</h4>
-                  {step.items && (
-                    <div className="text-left w-full">
-                      <p className="text-sm font-medium mb-2">What you get:</p>
-                      <ul className="space-y-1.5">
-                        {step.items.map((item, j) => (
-                          <li key={j} className="flex items-start gap-2 text-sm text-muted-foreground">
-                            <Check className="size-3.5 text-primary mt-0.5 flex-shrink-0" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
+                  <div className="space-y-4">
+                    <h3 className="text-xl font-bold italic text-white">{step.title}</h3>
+                    <h4 className="text-lg font-semibold text-white/90 leading-snug">{step.headline}</h4>
+                    {step.items && (
+                      <div className="text-left w-full">
+                        <p className="text-sm font-medium mb-3 text-white/70">What you get:</p>
+                        <ul className="space-y-2">
+                          {step.items.map((item, j) => (
+                            <li key={j} className="flex items-start gap-2 text-sm text-gray-400">
+                              <Check className="size-3.5 text-white/50 mt-0.5 flex-shrink-0" />
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -477,6 +478,74 @@ export default function LandingPage() {
                 )
               })}
             </div>
+          </div>
+        </section>
+
+        {/* Founder Section */}
+        <section id="founder" className="w-full py-20 md:py-32 relative overflow-hidden bg-zinc-50/50 dark:bg-muted/30">
+          <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black_70%,transparent_100%)]"></div>
+          <div className="container px-4 md:px-6 relative z-10">
+            <motion.div
+              whileHover={{ y: -5, scale: 1.01 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Card className="overflow-hidden border border-zinc-200 dark:border-border/40 bg-white dark:bg-zinc-950 text-foreground shadow-2xl rounded-[2rem] md:rounded-[3rem] transition-shadow duration-300 hover:shadow-primary/5">
+                <CardContent className="p-0">
+                  <div className="grid md:grid-cols-2">
+                    <div className="relative h-[400px] md:h-auto overflow-hidden">
+                      <a href="https://cyberjai-v2.vercel.app" target="blank" rel="noopener noreferrer">
+                        <Image
+                          src="/Founder.jpeg"
+                          alt="Jaiganesh Lakshmanan"
+                          fill
+                          className="object-cover object-top hover:scale-105 transition-transform duration-700"
+                        />
+                      </a>
+                    </div>
+                    <div className="p-8 md:p-12 lg:p-16 flex flex-col justify-center">
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <a href="https://cyberjai-v2.vercel.app" target="blank" rel="noopener noreferrer" className="text-3xl md:text-4xl lg:text-5xl font-bold hover:underline cursor-pointer mb-3 tracking-tight text-zinc-900 dark:text-white block transition-all duration-300 hover:scale-105">Jaiganesh Lakshmanan</a>
+                        <p className="text-zinc-500 dark:text-primary text-lg md:text-xl font-medium mb-8">Founder and CEO of Secure Worldz</p>
+
+                        <div className="flex flex-wrap gap-2.5 mb-10">
+                          {["Technology speaker", "Ethical hacker", "AI developer", "Business growth speaker"].map((tag) => (
+                            <Badge key={tag} variant="secondary" className="bg-zinc-100 text-zinc-900 dark:bg-white/10 dark:text-white/90 border-none hover:bg-zinc-200 dark:hover:bg-white/20 px-4 py-1.5 text-sm font-normal backdrop-blur-sm">
+                              {tag}
+                            </Badge>
+                          ))}
+                        </div>
+
+                        <p className="text-zinc-600 dark:text-muted-foreground text-lg leading-relaxed mb-10 max-w-2xl">
+                          With over 10 years of experience in technology and cybersecurity, Jaiganesh Lakshmanan has worked with Fortune 10+ companies to strengthen their security infrastructure. As the founder of Drago and Proworldz, he has trained over 1,000 students across cybersecurity, ethical hacking, AI development, and business growth. Jaiganesh specializes in vulnerability assessment and penetration testing, having discovered critical security flaws in major financial institutions.
+                        </p>
+
+                        <div className="pl-6 border-l-2 border-primary/50 relative mb-10">
+                          <p className="text-xl md:text-2xl italic text-zinc-700 dark:text-foreground/90 font-light leading-snug">
+                            "Security is not a product, but a process. My goal is to teach students how to think like both defender and attacker—and to understand how technology drives real business value."
+                          </p>
+                        </div>
+
+                        <Button
+                          asChild
+                          size="lg"
+                          className="rounded-full bg-zinc-900 text-zinc-50 dark:bg-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all duration-300 px-8 hover:scale-110"
+                        >
+                          <a href="https://cyberjai-v2.vercel.app" target="_blank" rel="noopener noreferrer">
+                            View Portfolio
+                            <ArrowRight className="ml-2 size-4" />
+                          </a>
+                        </Button>
+                      </motion.div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
           </div>
         </section>
 
