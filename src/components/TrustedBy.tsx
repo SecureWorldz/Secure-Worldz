@@ -9,11 +9,11 @@ const TrustedBy: FC = () => {
       <FadeIn delay={200}>
         <div className="text-center mb-12">
           <p className="text-sm uppercase tracking-widest text-gray-400 font-medium">
-            Trusted by industry leaders
+            Trusted by organizations building the future
           </p>
         </div>
       </FadeIn>
-      
+
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
         {companies.map((company, index) => (
           <FadeIn key={company} delay={300 + index * 100}>
