@@ -214,7 +214,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
                     Ready to build real cybersecurity tools?
                   </h4>
                   <p className="text-xs sm:text-sm text-[#605A57] font-sans max-w-[480px]">
-                    Join our Starter Program (₹499) or Comprehensive Career Track (₹2,999) with real lab exercises and lifetime community mentorship.
+                    Join our Starter Program (₹999) or Comprehensive Career Track (₹2,999) with real lab exercises and lifetime community mentorship.
                   </p>
                 </div>
 

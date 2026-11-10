@@ -172,7 +172,7 @@ export default function LandingPage() {
                           10 Hands-on Labs
                         </span>
                         <span className="px-3 py-1 rounded-lg bg-white/[0.06] border border-white/[0.08] text-[11px] font-sans font-medium text-neutral-200">
-                          ₹499 Starter · ₹2,999 Advanced
+                          ₹999 Starter · ₹2,999 Advanced
                         </span>
                       </div>
 
@@ -235,7 +235,7 @@ export default function LandingPage() {
                     <span>Professional Training Tracks</span>
                   </div>
                   <h2 className="text-xl sm:text-2xl font-serif text-[#1C1A18] group-hover:text-black font-normal transition-colors">
-                    Starter Program (₹499) · Advanced Career Track (₹2,999)
+                    Starter Program (₹999) · Advanced Career Track (₹2,999)
                   </h2>
                   <p className="text-xs sm:text-sm text-[#605A57] font-sans max-w-[560px]">
                     Bilingual hands-on cybersecurity courses with practical labs, live mentorship, and verified certification.

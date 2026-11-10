@@ -50,7 +50,7 @@ export default function CoursesPage() {
   }
 
   const comparisonFeatures = [
-    { name: "Price", starter: "₹499 (One-time)", advanced: "₹2,999 (One-time)" },
+    { name: "Price", starter: "₹999 (One-time)", advanced: "₹2,999 (One-time)" },
     { name: "Duration", starter: "7 Days Intensive", advanced: "Comprehensive Career Track" },
     { name: "Prerequisites", starter: "Zero experience required", advanced: "Basic computing & networking" },
     { name: "Delivery Format", starter: "Self-paced + Guided labs", advanced: "Practical project capstones + Live" },
@@ -64,7 +64,7 @@ export default function CoursesPage() {
   const faqs = [
     {
       q: "Do I need prior coding or cybersecurity experience to join?",
-      a: "No prior experience is necessary for the Cybersecurity Starter Program (₹499). It starts from ground zero with computer fundamentals, operating systems, and beginner networking. For the Advanced Course (₹2,999), foundational computer familiarity is helpful, but our bilingual explanations make complex concepts easy to absorb.",
+      a: "No prior experience is necessary for the Cybersecurity Starter Program (₹999). It starts from ground zero with computer fundamentals, operating systems, and beginner networking. For the Advanced Course (₹2,999), foundational computer familiarity is helpful, but our bilingual explanations make complex concepts easy to absorb.",
     },
     {
       q: "In what languages are the lectures and mentorship delivered?",
@@ -374,7 +374,7 @@ export default function CoursesPage() {
                     <thead>
                       <tr className="border-b border-[rgba(55,50,47,0.1)] text-[#1C1A18]">
                         <th className="py-3.5 px-4 font-semibold">Curriculum Feature</th>
-                        <th className="py-3.5 px-4 font-semibold text-[#37322F]">Starter Program (₹499)</th>
+                        <th className="py-3.5 px-4 font-semibold text-[#37322F]">Starter Program (₹999)</th>
                         <th className="py-3.5 px-4 font-semibold text-[#16a34a]">Advanced Course (₹2,999)</th>
                       </tr>
                     </thead>

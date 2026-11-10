@@ -17,7 +17,7 @@ export const COURSES: Course[] = [
   {
     id: "cybersecurity-starter-program",
     title: "Cybersecurity Starter Program",
-    price: "₹499",
+    price: "₹999",
     numericPrice: 499,
     level: "Beginner",
     format: "7-day practical program",

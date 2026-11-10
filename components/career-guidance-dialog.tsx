@@ -7,7 +7,7 @@ export default function CareerGuidanceDialog() {
   const [isOpen, setIsOpen] = useState(false)
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
-  const [interest, setInterest] = useState("Cybersecurity Starter Program (₹499)")
+  const [interest, setInterest] = useState("Cybersecurity Starter Program (₹999)")
   const [submitted, setSubmitted] = useState(false)
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -124,8 +124,8 @@ export default function CareerGuidanceDialog() {
                     onChange={(e) => setInterest(e.target.value)}
                     className="px-3 py-2 bg-white border border-[rgba(55,50,47,0.15)] rounded-lg text-xs focus:outline-none focus:border-[#37322F]"
                   >
-                    <option value="Cybersecurity Starter Program (₹499)">
-                      Cybersecurity Starter Program (₹499)
+                    <option value="Cybersecurity Starter Program (₹999)">
+                      Cybersecurity Starter Program (₹999)
                     </option>
                     <option value="Advanced Cybersecurity Course (₹2,999)">
                       Advanced Cybersecurity Course (₹2,999)

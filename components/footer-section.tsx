@@ -118,7 +118,7 @@ export default function FooterSection() {
               Training & Services
             </div>
             <div className="flex flex-col justify-start items-start gap-2">
-              <Link href="/courses" className="text-[#49423D] text-sm hover:text-[#2F3037] transition-colors">Starter Program (₹499)</Link>
+              <Link href="/courses" className="text-[#49423D] text-sm hover:text-[#2F3037] transition-colors">Starter Program (₹999)</Link>
               <Link href="/courses" className="text-[#49423D] text-sm hover:text-[#2F3037] transition-colors">Advanced Course (₹2,999)</Link>
               <Link href="/#services" className="text-[#49423D] text-sm hover:text-[#2F3037] transition-colors">VAPT & Pentesting</Link>
               <Link href="/#services" className="text-[#49423D] text-sm hover:text-[#2F3037] transition-colors">SOC Monitoring</Link>
