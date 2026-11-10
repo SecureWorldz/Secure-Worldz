@@ -1,8 +1,9 @@
 "use client"
 
 import Link from "next/link"
-import { Youtube, Clock, ThumbsUp, Layers, PlayCircle, ArrowRight, Video } from "lucide-react"
+import { Clock, ThumbsUp, Layers, PlayCircle, ArrowRight, Video } from "lucide-react"
 import { ScrollReveal } from "@/components/scroll-reveal"
+import { YoutubePlayer } from "@/components/youtube-player"
 
 export default function FeaturedMasterclasses() {
   const masterclasses = [
@@ -14,6 +15,7 @@ export default function FeaturedMasterclasses() {
     likes: "July 10, 2026",
     topics: "12+ Key Topics",
     highlight: "Beginner to Ethical Hacker",
+    videoId: "Fzzim7iVibI",
     link: "https://youtu.be/Fzzim7iVibI",
     isInternal: false,
   },
@@ -25,6 +27,7 @@ export default function FeaturedMasterclasses() {
     likes: "2026",
     topics: "Cyber Forensics Roadmap",
     highlight: "Build a Career in Digital Forensics",
+    videoId: "k2XiUO-juK4",
     link: "https://youtu.be/k2XiUO-juK4",
     isInternal: false,
   },
@@ -36,6 +39,7 @@ export default function FeaturedMasterclasses() {
     likes: "October 2026",
     topics: "AI Agents & Reverse Engineering",
     highlight: "Explore the Future of AI-Powered Development",
+    videoId: "xubXao5wKJY",
     link: "https://youtu.be/xubXao5wKJY",
     isInternal: false,
   },
@@ -87,29 +91,12 @@ export default function FeaturedMasterclasses() {
               }`}
             >
               <div className="flex flex-col gap-4 w-full">
-                {/* Visual Video Card Preview */}
-                <div className="w-full h-40 bg-[#1F1E1D] rounded-xl border border-[rgba(55,50,47,0.15)] p-4 flex flex-col justify-between text-white relative overflow-hidden group/thumb shadow-xs">
-                  <div className="flex justify-between items-center z-10">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400">
-                      SECUREWORLDZ FREE ACCESS
-                    </span>
-                    <Youtube className="w-4 h-4 text-red-500" />
-                  </div>
-
-                  <div className="z-10 flex items-center justify-center my-auto">
-                    <div className="w-11 h-11 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white border border-white/30 group-hover:bg-[#181716] group-hover:text-[#39F763] group-hover/thumb:scale-110 transition-all shadow-xs">
-                      <PlayCircle className="w-6 h-6 group-hover:text-[#39F763] transition-colors" />
-                    </div>
-                  </div>
-
-                  <div className="z-10 flex justify-between items-center text-[10px] font-mono text-neutral-400 pt-1">
-                    <span>{cls.highlight}</span>
-                    <span>HD 1080P</span>
-                  </div>
-
-                  {/* Subtle pattern background */}
-                  <div className="absolute inset-0 bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:12px_12px] opacity-30" />
-                </div>
+                {/* YouTube Video Player */}
+                <YoutubePlayer
+                  videoId={cls.videoId}
+                  title={cls.title}
+                  highlight={cls.highlight}
+                />
 
                 {/* Badge & Title */}
                 <div>
