@@ -2,8 +2,10 @@
 
 import { MessageSquare, Users, Sparkles, MapPin, Calendar, ArrowRight, Languages } from "lucide-react"
 import { ScrollReveal } from "@/components/scroll-reveal"
+import { useContent } from "@/hooks/use-content"
 
 export default function CommunitySection() {
+  const meetups = useContent("meetups")
   const communityStats = [
     { label: "DRAGOZ Members", value: "300+", desc: "Active cybersecurity learners & interns" },
     { label: "Students Reached", value: "5,000+", desc: "Trained across community workshops" },
@@ -96,47 +98,50 @@ export default function CommunitySection() {
             </div>
           </ScrollReveal>
 
-          {/* Card 2: Offline Meetup (Prathyusha Eng College) */}
-          <ScrollReveal
-            delay={100}
-            direction="up"
-            distance={20}
-            className="w-full bg-white rounded-2xl p-6 sm:p-8 border border-[rgba(55,50,47,0.1)] shadow-xs hover:border-[#39F763]/40 hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
-          >
-            <div className="flex flex-col gap-4">
-              <div className="w-10 h-10 rounded-lg bg-white border border-[rgba(55,50,47,0.1)] flex items-center justify-center text-[#1C1A18] group-hover:bg-[#181716] group-hover:text-[#39F763] transition-all shadow-xs">
-                <Users className="w-5 h-5 text-[#37322F] group-hover:text-[#39F763] transition-colors" />
-              </div>
-
-              <div>
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#828387] font-sans">
-                  Offline Campus Meetup
-                </span>
-                <h3 className="text-xl font-serif text-[#37322F] group-hover:text-black transition-colors mt-1 mb-2 font-medium">
-                  Meetup 2026 @ Prathyusha
-                </h3>
-                <div className="flex flex-col gap-1.5 text-xs text-[#49423D] font-sans mb-3">
-                  <div className="flex items-center gap-1.5">
-                    <MapPin className="w-3.5 h-3.5 text-[#828387] group-hover:text-[#39F763] transition-colors" />
-                    <span>Prathyusha Engineering College, Tiruvallur</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <Calendar className="w-3.5 h-3.5 text-[#828387] group-hover:text-[#39F763] transition-colors" />
-                    <span>3 September 2026</span>
-                  </div>
+          {/* Community Meetups from Firebase */}
+          {meetups.map((meetup, index) => (
+            <ScrollReveal
+              key={meetup.id}
+              delay={100 + index * 80}
+              direction="up"
+              distance={20}
+              className="w-full bg-white rounded-2xl p-6 sm:p-8 border border-[rgba(55,50,47,0.1)] shadow-xs hover:border-[#39F763]/40 hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
+            >
+              <div className="flex flex-col gap-4">
+                <div className="w-10 h-10 rounded-lg bg-white border border-[rgba(55,50,47,0.1)] flex items-center justify-center text-[#1C1A18] group-hover:bg-[#181716] group-hover:text-[#39F763] transition-all shadow-xs">
+                  <Users className="w-5 h-5 text-[#37322F] group-hover:text-[#39F763] transition-colors" />
                 </div>
-                <p className="text-xs text-[#605A57] font-sans leading-relaxed">
-                  Full-day practical workshop showcasing live penetration testing, student project showcases, and team networking.
-                </p>
-              </div>
-            </div>
 
-            <div className="pt-6">
-              <span className="text-[11px] text-[#828387] font-sans italic">
-                * Real student feedback featured directly from cohorts.
-              </span>
-            </div>
-          </ScrollReveal>
+                <div>
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-[#828387] font-sans">
+                    {meetup.status === "Upcoming" ? "Upcoming Meetup" : "Offline Campus Meetup"}
+                  </span>
+                  <h3 className="text-xl font-serif text-[#37322F] group-hover:text-black transition-colors mt-1 mb-2 font-medium">
+                    {meetup.title}
+                  </h3>
+                  <div className="flex flex-col gap-1.5 text-xs text-[#49423D] font-sans mb-3">
+                    <div className="flex items-center gap-1.5">
+                      <MapPin className="w-3.5 h-3.5 text-[#828387] group-hover:text-[#39F763] transition-colors" />
+                      <span>{meetup.location}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5 text-[#828387] group-hover:text-[#39F763] transition-colors" />
+                      <span>{meetup.date}</span>
+                    </div>
+                  </div>
+                  <p className="text-xs text-[#605A57] font-sans leading-relaxed">
+                    {meetup.description}
+                  </p>
+                </div>
+              </div>
+
+              <div className="pt-6">
+                <span className="text-[11px] text-[#828387] font-sans italic">
+                  {(meetup.highlights ?? []).slice(0, 2).join(" • ")}
+                </span>
+              </div>
+            </ScrollReveal>
+          ))}
 
           {/* Card 3: Bilingual Support (English & Tamil) */}
           <ScrollReveal

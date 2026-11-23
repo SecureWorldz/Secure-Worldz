@@ -1,0 +1,31 @@
+{
+  "name": "secureworldz-admin",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port 3001",
+    "build": "next build",
+    "start": "next start --port 3001",
+    "lint": "tsc --noEmit",
+    "seed": "node scripts/seed.mjs"
+  },
+  "dependencies": {
+    "firebase": "^13.4.0",
+    "firebase-admin": "^14.5.1",
+    "lucide-react": "^0.454.0",
+    "next": "16.3.8",
+    "react": "^19",
+    "react-dom": "^19",
+    "zod": "^3.25.67"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.9",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "postcss": "^8.5",
+    "tailwindcss": "^4.1.9",
+    "tw-animate-css": "^1.3.3",
+    "typescript": "^5"
+  }
+}

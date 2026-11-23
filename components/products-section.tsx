@@ -1,6 +1,6 @@
 "use client"
 
-import { PRODUCTS } from "@/lib/data/products"
+import { useContent } from "@/hooks/use-content"
 import {
   Layers,
   Cpu,
@@ -38,8 +38,9 @@ function getProductIcon(id: string) {
 }
 
 export default function ProductsSection() {
-  const tools = PRODUCTS.filter((p) => p.category === "Tool")
-  const lab = PRODUCTS.find((p) => p.category === "Lab")
+  const products = useContent("products")
+  const tools = products.filter((p) => p.category === "Tool")
+  const lab = products.find((p) => p.category === "Lab")
 
   return (
     <section id="products" className="w-full border-b border-[rgba(55,50,47,0.12)] flex flex-col justify-center items-center">

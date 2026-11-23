@@ -6,7 +6,7 @@ import FooterSection from "@/components/footer-section"
 import CTASection from "@/components/cta-section"
 import ScrollProgress from "@/components/scroll-progress"
 import { ScrollReveal } from "@/components/scroll-reveal"
-import { WORKSHOPS } from "@/lib/data/workshops"
+import { useContent } from "@/hooks/use-content"
 import { Calendar, Clock, MapPin, Users, CheckCircle2, Send, Sparkles, ArrowRight } from "lucide-react"
 
 export default function WorkshopsPage() {
@@ -18,8 +18,9 @@ export default function WorkshopsPage() {
   })
   const [isSubmitted, setIsSubmitted] = useState(false)
 
-  const upcomingWorkshop = WORKSHOPS.find((w) => w.status === "Upcoming")
-  const pastEvents = WORKSHOPS.filter((w) => w.status === "Completed")
+  const workshops = useContent("workshops")
+  const upcomingWorkshop = workshops.find((w) => w.status === "Upcoming")
+  const pastEvents = workshops.filter((w) => w.status === "Completed")
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()

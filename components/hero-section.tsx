@@ -2,15 +2,16 @@
 
 import React from "react"
 import Link from "next/link"
-import { ArrowUpRight, ShieldCheck, Play } from "lucide-react"
-import {
-  DoodleLoopArrow,
-  PerformanceSparkline,
-  ThreeBarChart,
-  ShieldSecurityIcon,
-  BotanicalBranch,
-} from "./svgs/hero-svgs"
-import { LaptopMockup } from "./svgs/laptop-mockup"
+import { ArrowUpRight, Play } from "lucide-react"
+
+// Import modular individual hero components
+import { BotanicalFoliage } from "./hero/botanical-foliage"
+import { GreenDiscBackdrop } from "./hero/green-disc-backdrop"
+import { FloatingOwaspCard } from "./hero/floating-owasp-card"
+import { FloatingThreatCard } from "./hero/floating-threat-card"
+import { DoodleArrow } from "./hero/doodle-arrow"
+import { HeroLaptop } from "./hero/hero-laptop"
+import { PedestalPlatform } from "./hero/pedestal-platform"
 
 export interface HeroSectionProps {
   badgeCategory?: string
@@ -44,8 +45,8 @@ export function HeroSection({
   ],
 }: HeroSectionProps) {
   return (
-    <section className="relative w-full bg-[#F7F5F3] overflow-hidden pt-8 sm:pt-12 md:pt-16 lg:pt-20 pb-16 sm:pb-20 md:pb-24 border-b border-[rgba(55,50,47,0.08)] [background-image:repeating-linear-gradient(-45deg,rgba(55,50,47,0.02)_0,rgba(55,50,47,0.02)_1px,transparent_0,transparent_14px)]">
-      {/* Outer Content Constraint */}
+    <section className="relative w-full bg-[#F7F5F3] overflow-hidden pt-10 sm:pt-14 md:pt-18 lg:pt-24 pb-16 sm:pb-20 md:pb-24 border-b border-[rgba(55,50,47,0.08)] [background-image:repeating-linear-gradient(-45deg,rgba(55,50,47,0.02)_0,rgba(55,50,47,0.02)_1px,transparent_0,transparent_14px)]">
+      {/* Outer Content Constraint with Generous Padding to Prevent Any SVG Edge Clipping */}
       <div className="w-full max-w-[1320px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
@@ -53,7 +54,7 @@ export function HeroSection({
           {/* LEFT COLUMN: BADGE, HEADLINE, DESCRIPTION, CTAS, STATS   */}
           {/* ========================================================= */}
           <div className="lg:col-span-6 xl:col-span-6 flex flex-col justify-start items-start text-left z-10">
-            {/* 1. Category Pill Badge with Pulsing Cyber Green Indicator (Matching Site Brillance Styling) */}
+            {/* 1. Category Pill Badge with Pulsing Cyber Green Indicator */}
             <div className="px-[14px] py-[6px] bg-white shadow-[0px_0px_0px_4px_rgba(55,50,47,0.05)] rounded-[90px] inline-flex items-center gap-2 border border-[rgba(2,6,23,0.08)] mb-6 sm:mb-8 shadow-xs">
               <span className="w-2 h-2 rounded-full bg-[#39F763] shadow-[0_0_8px_#39F763] animate-pulse" />
               <span className="text-[#37322F]/60 text-xs font-medium font-sans">Core Focus:</span>
@@ -113,75 +114,33 @@ export function HeroSection({
           </div>
 
           {/* ========================================================= */}
-          {/* RIGHT COLUMN: DARK GREEN DISC, FOLIAGE, SVGS, LAPTOP     */}
+          {/* RIGHT COLUMN: MODULAR ASSEMBLED HERO VISUALS              */}
           {/* ========================================================= */}
-          <div className="lg:col-span-6 xl:col-span-6 relative flex items-center justify-center lg:justify-end mt-8 lg:mt-0">
+          <div className="lg:col-span-6 xl:col-span-6 relative flex items-center justify-center lg:justify-end mt-8 lg:mt-0 pt-4 pb-2">
             {/* Visual Assembly Relative Container */}
             <div className="relative w-full max-w-[560px] lg:max-w-[580px] flex items-center justify-center">
 
-              {/* A. Large Forest Green Disc in Background */}
-              <div
-                className="absolute w-[360px] h-[360px] sm:w-[460px] sm:h-[460px] lg:w-[500px] lg:h-[500px] rounded-full bg-gradient-to-br from-[#1E3B2B] via-[#142A1F] to-[#0D1C14] -top-10 sm:-top-16 right-0 sm:right-4 lg:right-6 z-0 shadow-[0_25px_60px_rgba(20,42,31,0.25)] pointer-events-none"
-                aria-hidden="true"
-              />
+              {/* 1. Standalone Green Disc Backdrop (Contained, no clipping) */}
+              <GreenDiscBackdrop className="absolute w-[360px] h-[360px] sm:w-[440px] sm:h-[440px] lg:w-[480px] lg:h-[480px] -top-3 sm:-top-6 right-1 sm:right-4 lg:right-6 z-0" />
 
-              {/* B. Botanical Leaves Branch entering from top-right */}
-              <div
-                className="absolute -top-12 sm:-top-20 -right-6 sm:-right-10 w-48 sm:w-64 md:w-72 lg:w-80 pointer-events-none z-20"
-                aria-hidden="true"
-              >
-                <BotanicalBranch className="w-full h-auto" />
-              </div>
+              {/* 2. Standalone Botanical Leaves (Generous viewBox, 100% unclipped) */}
+              <BotanicalFoliage className="absolute -top-6 sm:-top-10 -right-4 sm:-right-8 w-52 sm:w-68 md:w-76 lg:w-84 z-20" />
 
-              {/* C. Hand-drawn Doodle Loop Arrow pointing toward Laptop & Defense Card */}
-              <div
-                className="absolute top-[12%] sm:top-[16%] -left-10 sm:-left-16 lg:-left-20 w-16 sm:w-20 md:w-24 pointer-events-none z-30"
-                aria-hidden="true"
-              >
-                <DoodleLoopArrow className="w-full h-auto text-[#37322F]" />
-              </div>
+              {/* 3. Standalone Hand-drawn Doodle Loop Arrow */}
+              <DoodleArrow className="absolute top-[12%] sm:top-[16%] -left-10 sm:-left-16 lg:-left-20 w-16 sm:w-20 md:w-24 z-30" />
 
-              {/* D. Floating Card: "OWASP 2026" (Top-Right of Laptop) */}
-              <div className="absolute -top-4 sm:-top-7 right-4 sm:right-10 z-30 bg-white/95 backdrop-blur-md rounded-2xl px-4 py-2.5 sm:px-4.5 sm:py-3 border border-[rgba(55,50,47,0.08)] shadow-[0_16px_36px_rgba(55,50,47,0.08)] hover:border-[#39F763]/40 flex items-center gap-3 transition-all hover:-translate-y-1 duration-300">
-                <div className="w-8 h-8 rounded-lg bg-[rgba(55,50,47,0.04)] border border-[rgba(55,50,47,0.08)] flex items-center justify-center text-[#1C1A18]">
-                  <ShieldSecurityIcon className="w-4 h-4" />
-                </div>
-                <div className="flex flex-col text-left">
-                  <span className="text-[10px] text-[#82807C] font-medium leading-tight font-sans">
-                    OWASP 2026
-                  </span>
-                  <span className="text-xs sm:text-[13px] font-semibold text-[#1C1A18] leading-tight font-sans">
-                    Zero-Day Ready
-                  </span>
-                </div>
-                <div className="ml-1 pl-2 border-l border-[rgba(55,50,47,0.08)] flex items-center">
-                  <ThreeBarChart className="w-5 h-5 text-[#1C1A18]" />
-                </div>
-              </div>
+              {/* 4. Standalone Floating OWASP 2026 Card */}
+              <FloatingOwaspCard className="absolute -top-3 sm:-top-6 right-4 sm:right-10" />
 
-              {/* E. Floating Card: "Threat Defense" (Left of Laptop) */}
-              <div className="absolute top-[48%] -left-8 sm:-left-14 lg:-left-18 -translate-y-1/2 z-30 bg-white/95 backdrop-blur-md rounded-2xl p-3 sm:p-3.5 border border-[rgba(55,50,47,0.08)] shadow-[0_18px_40px_rgba(55,50,47,0.1)] hover:border-[#39F763]/40 flex flex-col gap-2 w-36 sm:w-44 transition-all hover:-translate-y-[calc(50%+4px)] duration-300">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[rgba(55,50,47,0.04)] border border-[rgba(55,50,47,0.08)] flex items-center justify-center text-[#1C1A18]">
-                    <ShieldCheck className="w-4 h-4 text-[#1C1A18]" />
-                  </div>
-                  <div className="flex flex-col text-left">
-                    <span className="text-[10px] text-[#82807C] font-medium leading-tight font-sans">
-                      Threat Defense
-                    </span>
-                    <span className="text-xs sm:text-[13px] font-semibold text-[#1C1A18] leading-tight font-sans">
-                      Live VAPT Labs
-                    </span>
-                  </div>
-                </div>
-                <div className="w-full pt-1">
-                  <PerformanceSparkline className="w-full h-auto" />
-                </div>
-              </div>
+              {/* 5. Standalone Floating Threat Defense Card */}
+              <FloatingThreatCard className="absolute top-[48%] -left-8 sm:-left-14 lg:-left-18 -translate-y-1/2" />
 
-              {/* F. Centerpiece: Laptop Mockup standing on Concrete Pedestal */}
-              <div className="relative w-full z-10 pt-4">
-                <LaptopMockup />
+              {/* 6. Centerpiece: Laptop Mockup standing on grounded Pedestal */}
+              <div className="relative w-full z-10 pt-4 flex flex-col items-center">
+                <HeroLaptop />
+                <div className="w-[114%] -mt-2 z-0">
+                  <PedestalPlatform />
+                </div>
               </div>
 
             </div>

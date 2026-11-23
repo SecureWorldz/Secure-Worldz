@@ -1,0 +1,93 @@
+export interface Testimonial {
+  id: string
+  name: string
+  role?: string
+  source: string
+  content: string
+  avatar: string
+  highlight?: boolean
+}
+
+/** Static fallback used before Firebase content is loaded, and for seeding. */
+export const TESTIMONIALS: Testimonial[] = [
+  {
+    id: "jerlin",
+    name: "Jerlin",
+    source: "Rated by @Whatsapp",
+    content:
+      "I want to express my deep gratitude to SECUREWORLDZ and my mentor Cyber Jai for their life-changing guidance. Thanks to their support, I overcame challenges and developed offensive security skills, which led me to my current position in cybersecurity.",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80",
+  },
+  {
+    id: "mohammed-akmal",
+    name: "Mohammed Akmal",
+    source: "Rated by @Google",
+    content:
+      "They are awesome because they provide free practical tutorials and Vibe Hacking workshops on YouTube with an interactive, hands-on way of teaching.",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&auto=format&fit=crop&q=80",
+  },
+  {
+    id: "nakash-shafiey",
+    name: "Nakash Shafiey",
+    source: "Rated by @Google",
+    content:
+      "Everyone here talks about standard coding, but I learnt practical cybersecurity engineering here. Motivation, inspiration, and hands-on lab triage. Thanks to the whole team who are making students' dreams into reality. Always by your side 🙌",
+    avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=120&auto=format&fit=crop&q=80",
+  },
+  {
+    id: "praveen-m",
+    name: "Praveen M",
+    source: "Rated by @Google",
+    content:
+      "Detailed explanation helps to understand the concept clearly. The real hands-on labs and packet inspection sessions were exceptional ❤️",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&auto=format&fit=crop&q=80",
+  },
+  {
+    id: "velu-mani",
+    name: "Velu Mani",
+    source: "Rated by @Google",
+    content:
+      "Hi Team, Your Cybersecurity Starter course is very helpful to learn ethical hacking as a beginner. I was struggling with Linux command line tools and networking protocols. SECUREWORLDZ practical series made everything clear and simple to understand. Now I can practice Burp Suite and BugAtlas with confidence. Thanks to the SECUREWORLDZ team!",
+    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=120&auto=format&fit=crop&q=80",
+  },
+  {
+    id: "jai-pravin",
+    name: "Jai Pravin",
+    source: "Rated by @Trustpilot",
+    content:
+      "First of all great appreciation from my side to take an initiative to teach cybersecurity in our native language (Tamil & English) for great understanding. The main thing of this course was it has vast number of topics included which is truly needed for upskilling. They also gave useful tips and tricks for Resume Building and how to crack the Technical Interview. They trained us with hands-on projects which is much better way to practice. Highly recommend to everyone who is new to the cybersecurity world! 👏",
+    avatar: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=120&auto=format&fit=crop&q=80",
+  },
+  {
+    id: "syed-imran",
+    name: "Syed Imran",
+    source: "Rated by @Google",
+    content:
+      "Thrilled to share my SECUREWORLDZ experience! From zero security knowledge to analyzing live web vulnerabilities and understanding defensive architectures. With 10 practical modules, hands-on capstone labs, and DRAGOZ community support, SECUREWORLDZ is a must for career growth seekers.",
+    avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=120&auto=format&fit=crop&q=80",
+  },
+  {
+    id: "mohana-priya",
+    name: "Mohana Priya",
+    source: "Rated by @Google",
+    content:
+      "Being a peer mentor at DRAGOZ has been such a rewarding journey. The support, guidance, and collaboration here are truly top-notch. The team's commitment to high standards and welcoming environment makes it a great place. It feels like a genuine community dedicated to learning, growing, and helping each other succeed.",
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=120&auto=format&fit=crop&q=80",
+  },
+  {
+    id: "arjun",
+    name: "Arjun",
+    source: "Rated by @Google",
+    content:
+      "I have been participating in the practical cohorts and DRAGOZ Discord discussions. We have a great atmosphere and friendly mentors who review real exploit scenarios. Looking forward to continuing my security research with SECUREWORLDZ.",
+    avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=120&auto=format&fit=crop&q=80",
+  },
+  {
+    id: "karthik-raja",
+    name: "Karthik Raja",
+    source: "Rated by @LinkedIn",
+    content:
+      "The offline meetup conducted at Prathyusha Engineering College was 10x value worth! I learned so many takeaways from industry experts and live vulnerability demos.",
+    avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=120&auto=format&fit=crop&q=80",
+  },
+]

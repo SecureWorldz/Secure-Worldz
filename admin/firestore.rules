@@ -1,0 +1,48 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null && request.auth.token.admin == true;
+    }
+
+    // The five public content collections: world-readable, admin-write-only.
+    match /courses/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /workshops/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /testimonials/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /products/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /meetups/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Everything else (e.g. private staff data) is denied by default.
+  }
+}
+
+/*
+  Granting admin access (run once in a trusted server environment, NOT in the browser):
+
+    const admin = require('firebase-admin');
+    await admin.auth().setCustomUserClaims(uid, { admin: true });
+
+  Then have the affected user sign out and sign back in so the ID token is refreshed.
+  Deploy these rules with: firebase deploy --only firestore:rules
+*/

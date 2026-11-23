@@ -1,16 +1,17 @@
 "use client"
 
 import { useState } from "react"
-import { COURSES } from "@/lib/data/courses"
+import { useContent } from "@/hooks/use-content"
 import { GraduationCap, Check, ArrowRight, Clock, Award, Users, BookOpen, Shield, Sparkles } from "lucide-react"
 import { ScrollReveal } from "@/components/scroll-reveal"
 
 export default function CoursesSection() {
   const [selectedLevel, setSelectedLevel] = useState<"All" | "Beginner" | "Advanced">("All")
+  const courses = useContent("courses")
 
-  const filteredCourses = selectedLevel === "All" 
-    ? COURSES 
-    : COURSES.filter((c) => c.level === selectedLevel)
+  const filteredCourses = selectedLevel === "All"
+    ? courses
+    : courses.filter((c) => c.level === selectedLevel)
 
   const courseTechStacks: Record<string, string[]> = {
     "cybersecurity-starter-program": ["Linux", "Wireshark", "Nmap", "Bash", "Python", "AI Prompting"],

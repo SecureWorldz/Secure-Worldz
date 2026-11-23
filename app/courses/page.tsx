@@ -8,7 +8,7 @@ import CTASection from "@/components/cta-section"
 import ScrollProgress from "@/components/scroll-progress"
 import { ScrollReveal } from "@/components/scroll-reveal"
 import CareerGuidanceDialog from "@/components/career-guidance-dialog"
-import { COURSES } from "@/lib/data/courses"
+import { useContent } from "@/hooks/use-content"
 import {
   GraduationCap,
   Check,
@@ -30,11 +30,12 @@ import {
 export default function CoursesPage() {
   const [selectedLevel, setSelectedLevel] = useState<"All" | "Beginner" | "Advanced">("All")
   const [openFaq, setOpenFaq] = useState<number | null>(null)
+  const courses = useContent("courses")
 
   const filteredCourses =
     selectedLevel === "All"
-      ? COURSES
-      : COURSES.filter((c) => c.level === selectedLevel)
+      ? courses
+      : courses.filter((c) => c.level === selectedLevel)
 
   const courseTechStacks: Record<string, string[]> = {
     "cybersecurity-starter-program": ["Linux", "Wireshark", "Nmap", "Bash", "Python", "AI Prompting"],
