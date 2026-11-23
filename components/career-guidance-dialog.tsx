@@ -1,14 +1,80 @@
 "use client"
 
-import { useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { MessageSquare, X, Send, ShieldCheck, CheckCircle2 } from "lucide-react"
 
 export default function CareerGuidanceDialog() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isClosing, setIsClosing] = useState(false)
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
   const [interest, setInterest] = useState("Cybersecurity Starter Program (₹499)")
   const [submitted, setSubmitted] = useState(false)
+
+  const triggerRef = useRef<HTMLButtonElement>(null)
+  const panelRef = useRef<HTMLDivElement>(null)
+  const firstFieldRef = useRef<HTMLInputElement>(null)
+  const closeTimer = useRef<number | null>(null)
+
+  // Dismiss along the same path it appeared, then hand focus back to the trigger.
+  const close = useCallback(() => {
+    if (isClosing) return
+    setIsClosing(true)
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    closeTimer.current = window.setTimeout(() => {
+      setIsOpen(false)
+      setIsClosing(false)
+      setSubmitted(false)
+      triggerRef.current?.focus()
+    }, reduceMotion ? 0 : 180)
+  }, [isClosing])
+
+  useEffect(() => {
+    if (!isOpen) return
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    const focusTimer = window.setTimeout(() => firstFieldRef.current?.focus(), 40)
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault()
+        close()
+        return
+      }
+      if (event.key !== "Tab" || !panelRef.current) return
+
+      const focusables = Array.from(
+        panelRef.current.querySelectorAll<HTMLElement>(
+          "a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled])"
+        )
+      )
+      if (focusables.length === 0) return
+      const first = focusables[0]
+      const last = focusables[focusables.length - 1]
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault()
+        first.focus()
+      }
+    }
+
+    document.addEventListener("keydown", onKeyDown)
+    return () => {
+      document.removeEventListener("keydown", onKeyDown)
+      document.body.style.overflow = previousOverflow
+      window.clearTimeout(focusTimer)
+    }
+  }, [isOpen, close])
+
+  useEffect(() => {
+    return () => {
+      if (closeTimer.current) window.clearTimeout(closeTimer.current)
+    }
+  }, [])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -17,10 +83,7 @@ export default function CareerGuidanceDialog() {
       `Hi SECUREWORLDZ Team,\nMy name is ${name}.\nI would like free guidance regarding ${interest}.\nPhone: ${phone}`
     )
     window.open(`https://wa.me/917845088387?text=${text}`, "_blank")
-    setTimeout(() => {
-      setSubmitted(false)
-      setIsOpen(false)
-    }, 2000)
+    window.setTimeout(() => close(), 2000)
   }
 
   return (
@@ -28,9 +91,12 @@ export default function CareerGuidanceDialog() {
       {/* Floating Action Trigger Button */}
       <div className="fixed bottom-6 right-6 z-50">
         <button
+          ref={triggerRef}
           onClick={() => setIsOpen(true)}
           className="px-4 py-2.5 bg-[#181716] hover:bg-black text-white rounded-full shadow-[0_4px_16px_rgba(0,0,0,0.22)] border border-[rgba(255,255,255,0.15)] hover:border-[#39F763]/50 hover:shadow-[0_4px_20px_rgba(57,247,99,0.25)] flex items-center gap-2 text-xs font-medium font-sans transition-all hover:scale-105 active:scale-95"
           aria-label="Get Free Career Guidance"
+          aria-haspopup="dialog"
+          aria-expanded={isOpen}
         >
           <div className="w-2 h-2 rounded-full bg-[#39F763] shadow-[0_0_8px_#39F763] animate-pulse" />
           <MessageSquare className="w-3.5 h-3.5" />
@@ -40,15 +106,28 @@ export default function CareerGuidanceDialog() {
 
       {/* Guidance Modal Dialog */}
       {isOpen && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 z-[100] animate-fadeIn">
+        <div
+          data-glass-scrim
+          className={`fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs ${
+            isClosing ? "scrim-out" : "scrim-in"
+          }`}
+          onClick={close}
+        >
           <div
-            className="w-full max-w-[420px] bg-[#F7F5F3] border border-[rgba(55,50,47,0.15)] shadow-[0_12px_40px_rgba(0,0,0,0.15)] rounded-2xl p-6 sm:p-7 relative flex flex-col gap-5"
+            ref={panelRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="career-dialog-title"
+            data-glass
+            className={`w-full max-w-[420px] bg-[#F7F5F3] border border-[rgba(55,50,47,0.15)] shadow-[0_12px_40px_rgba(0,0,0,0.15)] rounded-2xl p-6 sm:p-7 relative flex flex-col gap-5 origin-bottom-right ${
+              isClosing ? "material-out" : "material-in"
+            }`}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
             <button
-              onClick={() => setIsOpen(false)}
-              className="absolute top-4 right-4 p-1.5 rounded-full hover:bg-[rgba(55,50,47,0.08)] text-[#605A57] transition-colors"
+              onClick={close}
+              className="absolute top-3 right-3 w-10 h-10 flex items-center justify-center rounded-full hover:bg-[rgba(55,50,47,0.08)] text-[#605A57] transition-colors"
               aria-label="Close dialog"
             >
               <X className="w-4 h-4" />
@@ -62,7 +141,7 @@ export default function CareerGuidanceDialog() {
                   Free Career Guidance
                 </span>
               </div>
-              <h3 className="text-xl font-serif text-[#37322F]">
+              <h3 id="career-dialog-title" className="text-xl font-serif text-[#37322F]">
                 Talk to a Cybersecurity Counselor
               </h3>
               <p className="text-xs text-[#605A57] font-sans leading-relaxed">
@@ -71,7 +150,10 @@ export default function CareerGuidanceDialog() {
             </div>
 
             {submitted ? (
-              <div className="py-6 flex flex-col items-center justify-center gap-2 text-center bg-white rounded-xl border border-[rgba(55,50,47,0.1)]">
+              <div
+                role="status"
+                className="py-6 flex flex-col items-center justify-center gap-2 text-center bg-white rounded-xl border border-[rgba(55,50,47,0.1)]"
+              >
                 <CheckCircle2 className="w-8 h-8 text-[#37322F]" />
                 <span className="text-sm font-semibold text-[#37322F] font-sans">
                   Connecting via WhatsApp...
@@ -83,10 +165,12 @@ export default function CareerGuidanceDialog() {
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-3 font-sans">
                 <div className="flex flex-col gap-1">
-                  <label className="text-[11px] font-medium text-[#49423D]">
+                  <label htmlFor="career-name" className="text-[11px] font-medium text-[#49423D]">
                     Your Name
                   </label>
                   <input
+                    id="career-name"
+                    ref={firstFieldRef}
                     type="text"
                     required
                     placeholder="Abishek"
@@ -97,7 +181,7 @@ export default function CareerGuidanceDialog() {
                 </div>
 
                 <div className="flex flex-col gap-1">
-                  <label className="text-[11px] font-medium text-[#49423D]">
+                  <label htmlFor="career-phone" className="text-[11px] font-medium text-[#49423D]">
                     WhatsApp Number
                   </label>
                   <div className="flex items-center bg-white border border-[rgba(55,50,47,0.15)] rounded-lg overflow-hidden">
@@ -105,6 +189,7 @@ export default function CareerGuidanceDialog() {
                       +91
                     </span>
                     <input
+                      id="career-phone"
                       type="tel"
                       required
                       placeholder="78450 88387"
@@ -116,10 +201,11 @@ export default function CareerGuidanceDialog() {
                 </div>
 
                 <div className="flex flex-col gap-1">
-                  <label className="text-[11px] font-medium text-[#49423D]">
+                  <label htmlFor="career-interest" className="text-[11px] font-medium text-[#49423D]">
                     Program or Area of Interest
                   </label>
                   <select
+                    id="career-interest"
                     value={interest}
                     onChange={(e) => setInterest(e.target.value)}
                     className="px-3 py-2 bg-white border border-[rgba(55,50,47,0.15)] rounded-lg text-xs focus:outline-none focus:border-[#37322F]"

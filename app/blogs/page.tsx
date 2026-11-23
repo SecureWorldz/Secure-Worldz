@@ -84,7 +84,7 @@ export default function BlogsPage() {
             </div>
 
             {/* Articles Grid (9 Articles) */}
-            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-4">
+            <div className="content-container py-4">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0">
                 {filteredPosts.map((post, index) => (
                   <ScrollReveal

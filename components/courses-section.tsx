@@ -20,7 +20,7 @@ export default function CoursesSection() {
   return (
     <section id="courses" className="w-full py-20 md:py-28 border-b border-[rgba(55,50,47,0.12)] flex flex-col justify-center items-center">
       {/* Header Section */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 mb-10 sm:mb-12 flex flex-col justify-center items-center text-center">
+      <div className="content-container mb-10 sm:mb-12 flex flex-col justify-center items-center text-center">
         <ScrollReveal className="w-full max-w-[660px] flex flex-col justify-start items-center gap-4 text-center">
           <div className="px-[14px] py-[6px] bg-white shadow-[0px_0px_0px_4px_rgba(55,50,47,0.05)] rounded-[90px] flex items-center gap-2 border border-[rgba(2,6,23,0.08)]">
             <GraduationCap className="w-3.5 h-3.5 text-[#37322F]" />
@@ -37,7 +37,7 @@ export default function CoursesSection() {
       </div>
 
       {/* Filter / Toggle Pills */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 mb-12 flex justify-center items-center">
+      <div className="content-container mb-12 flex justify-center items-center">
         <div className="p-1.5 bg-white rounded-full flex items-center gap-1.5 border border-[rgba(55,50,47,0.1)] shadow-xs">
           {(["All", "Beginner", "Advanced"] as const).map((level) => (
             <button
@@ -56,7 +56,7 @@ export default function CoursesSection() {
       </div>
 
       {/* Courses Cards Section with Distinct Cards & Neat Spacing */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+      <div className="content-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
           {filteredCourses.map((course, index) => {
             const isFeatured = course.featured

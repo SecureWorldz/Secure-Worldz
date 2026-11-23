@@ -98,7 +98,7 @@ export default function TestimonialsSection() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(217,119,6,0.05),transparent_60%)] pointer-events-none" />
 
       {/* Header Section */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 mb-12 sm:mb-16 flex flex-col items-center text-center relative z-10">
+      <div className="content-container mb-12 sm:mb-16 flex flex-col items-center text-center relative z-10">
         <ScrollReveal direction="down" distance={16} delay={50} className="mb-3">
           <span className="text-[#D97706] text-xs font-semibold uppercase tracking-[0.2em] font-sans">
             STUDENT REVIEW
@@ -116,7 +116,7 @@ export default function TestimonialsSection() {
       </div>
 
       {/* Masonry Columns Container */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+      <div className="content-container relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
           {/* Column 1 */}
           <div className="flex flex-col gap-6">
@@ -142,7 +142,7 @@ export default function TestimonialsSection() {
       </div>
 
       {/* Trust metric badge below reviews */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 mt-12 sm:mt-16 text-center relative z-10">
+      <div className="content-container mt-12 sm:mt-16 text-center relative z-10">
         <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white border border-[rgba(55,50,47,0.1)] shadow-xs text-xs sm:text-sm font-sans text-[#37322F]">
           <div className="flex items-center gap-1 text-amber-500">
             {Array.from({ length: 5 }).map((_, i) => (

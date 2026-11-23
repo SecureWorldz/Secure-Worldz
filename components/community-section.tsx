@@ -14,7 +14,7 @@ export default function CommunitySection() {
   return (
     <section id="community" className="w-full border-b border-[rgba(55,50,47,0.12)] flex flex-col justify-center items-center">
       {/* Header Section */}
-      <div className="self-stretch px-4 sm:px-6 md:px-24 py-12 md:py-16 border-b border-[rgba(55,50,47,0.12)] flex justify-center items-center">
+      <div className="content-container py-12 md:py-16 border-b border-[rgba(55,50,47,0.12)] flex justify-center items-center">
         <ScrollReveal className="w-full max-w-[660px] flex flex-col justify-start items-center gap-4 text-center">
           <div className="px-[14px] py-[6px] bg-white shadow-[0px_0px_0px_4px_rgba(55,50,47,0.05)] rounded-[90px] flex items-center gap-2 border border-[rgba(2,6,23,0.08)]">
             <Sparkles className="w-3.5 h-3.5 text-[#37322F]" />
@@ -30,18 +30,16 @@ export default function CommunitySection() {
         </ScrollReveal>
       </div>
 
-      {/* Community Metrics Strip - Connected Row */}
-      <div className="self-stretch flex justify-center items-start border-b border-[rgba(55,50,47,0.12)]">
-        <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-0">
+      {/* Community Metrics Strip */}
+      <div className="content-container py-8 border-b border-[rgba(55,50,47,0.12)]">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {communityStats.map((stat, i) => (
             <ScrollReveal
               key={i}
               delay={i * 70}
               direction="up"
               distance={16}
-              className={`p-6 sm:p-8 flex flex-col items-center text-center bg-[#F7F5F3] hover:bg-white transition-all duration-300 group border-b md:border-b-0 border-[rgba(55,50,47,0.12)] ${
-                i % 2 === 0 ? "border-r border-[rgba(55,50,47,0.12)]" : ""
-              } ${i < 3 ? "md:border-r border-[rgba(55,50,47,0.12)]" : ""}`}
+              className="w-full bg-white rounded-2xl p-6 sm:p-8 border border-[rgba(55,50,47,0.1)] shadow-xs flex flex-col items-center text-center group"
             >
               <span className="text-3xl sm:text-4xl font-serif text-[#37322F] group-hover:text-black font-medium tracking-tight transition-colors">
                 {stat.value}
@@ -57,28 +55,15 @@ export default function CommunitySection() {
         </div>
       </div>
 
-      {/* 3 Community Pillars in Connected Editorial Grid */}
-      <div className="self-stretch flex justify-center items-start">
-        {/* Left decorative hatch */}
-        <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch relative overflow-hidden hidden sm:block">
-          <div className="w-[120px] left-[-40px] top-[-120px] absolute flex flex-col">
-            {Array.from({ length: 90 }).map((_, i) => (
-              <div
-                key={i}
-                className="self-stretch h-3 rotate-[-45deg] origin-top-left outline outline-[0.5px] outline-[rgba(3,7,18,0.08)] outline-offset-[-0.25px]"
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* 3 Pillars Connected Cells */}
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-0 border-l border-r border-[rgba(55,50,47,0.12)]">
+      {/* 3 Community Pillar Cards */}
+      <div className="content-container py-8 sm:py-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Card 1: Discord Interaction */}
           <ScrollReveal
             delay={0}
             direction="up"
             distance={20}
-            className="p-6 sm:p-8 flex flex-col justify-between border-b md:border-b-0 md:border-r border-[rgba(55,50,47,0.12)] bg-[#F7F5F3] hover:bg-white transition-all duration-300 group"
+            className="w-full bg-white rounded-2xl p-6 sm:p-8 border border-[rgba(55,50,47,0.1)] shadow-xs hover:border-[#39F763]/40 hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
           >
             <div className="flex flex-col gap-4">
               <div className="w-10 h-10 rounded-lg bg-white border border-[rgba(55,50,47,0.1)] flex items-center justify-center text-[#1C1A18] group-hover:bg-[#181716] group-hover:text-[#39F763] transition-all shadow-xs">
@@ -116,7 +101,7 @@ export default function CommunitySection() {
             delay={100}
             direction="up"
             distance={20}
-            className="p-6 sm:p-8 flex flex-col justify-between border-b md:border-b-0 md:border-r border-[rgba(55,50,47,0.12)] bg-[#F7F5F3] hover:bg-white transition-all duration-300 group"
+            className="w-full bg-white rounded-2xl p-6 sm:p-8 border border-[rgba(55,50,47,0.1)] shadow-xs hover:border-[#39F763]/40 hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
           >
             <div className="flex flex-col gap-4">
               <div className="w-10 h-10 rounded-lg bg-white border border-[rgba(55,50,47,0.1)] flex items-center justify-center text-[#1C1A18] group-hover:bg-[#181716] group-hover:text-[#39F763] transition-all shadow-xs">
@@ -158,7 +143,7 @@ export default function CommunitySection() {
             delay={200}
             direction="up"
             distance={20}
-            className="p-6 sm:p-8 flex flex-col justify-between border-b md:border-b-0 border-[rgba(55,50,47,0.12)] bg-[#F7F5F3] hover:bg-white transition-all duration-300 group"
+            className="w-full bg-white rounded-2xl p-6 sm:p-8 border border-[rgba(55,50,47,0.1)] shadow-xs hover:border-[#39F763]/40 hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
           >
             <div className="flex flex-col gap-4">
               <div className="w-10 h-10 rounded-lg bg-white border border-[rgba(55,50,47,0.1)] flex items-center justify-center text-[#1C1A18] group-hover:bg-[#181716] group-hover:text-[#39F763] transition-all shadow-xs">
@@ -190,18 +175,6 @@ export default function CommunitySection() {
               </span>
             </div>
           </ScrollReveal>
-        </div>
-
-        {/* Right decorative hatch */}
-        <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch relative overflow-hidden hidden sm:block">
-          <div className="w-[120px] left-[-40px] top-[-120px] absolute flex flex-col">
-            {Array.from({ length: 90 }).map((_, i) => (
-              <div
-                key={i}
-                className="self-stretch h-3 rotate-[-45deg] origin-top-left outline outline-[0.5px] outline-[rgba(3,7,18,0.08)] outline-offset-[-0.25px]"
-              />
-            ))}
-          </div>
         </div>
       </div>
     </section>

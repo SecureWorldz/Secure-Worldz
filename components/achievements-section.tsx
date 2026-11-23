@@ -28,7 +28,7 @@ export default function AchievementsSection() {
   return (
     <section id="achievements" className="w-full border-b border-[rgba(55,50,47,0.12)] flex flex-col justify-center items-center">
       {/* Header Section */}
-      <div className="self-stretch px-4 sm:px-6 md:px-24 py-12 md:py-16 border-b border-[rgba(55,50,47,0.12)] flex justify-center items-center">
+      <div className="content-container py-12 md:py-16 border-b border-[rgba(55,50,47,0.12)] flex justify-center items-center">
         <ScrollReveal className="w-full max-w-[620px] flex flex-col justify-start items-center gap-4 text-center">
           {/* Badge */}
           <div className="px-[14px] py-[6px] bg-white shadow-[0px_0px_0px_4px_rgba(55,50,47,0.05)] rounded-[90px] flex items-center gap-2 border border-[rgba(2,6,23,0.08)]">
@@ -45,31 +45,16 @@ export default function AchievementsSection() {
         </ScrollReveal>
       </div>
 
-      {/* Connected Editorial Grid for Stats */}
-      <div className="self-stretch flex justify-center items-start">
-        {/* Left decorative hatch */}
-        <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch relative overflow-hidden hidden sm:block">
-          <div className="w-[120px] left-[-40px] top-[-120px] absolute flex flex-col">
-            {Array.from({ length: 70 }).map((_, i) => (
-              <div
-                key={i}
-                className="self-stretch h-3 rotate-[-45deg] origin-top-left outline outline-[0.5px] outline-[rgba(3,7,18,0.08)] outline-offset-[-0.25px]"
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* 3 Metric Columns in Connected Grid */}
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-0 border-l border-r border-[rgba(55,50,47,0.12)]">
+      {/* 3 Stat Cards */}
+      <div className="content-container py-8 sm:py-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {stats.map((stat, index) => (
             <ScrollReveal
               key={index}
               delay={index * 130}
               direction="up"
               distance={24}
-              className={`p-8 sm:p-10 flex flex-col justify-between items-start gap-6 border-b md:border-b-0 border-[rgba(55,50,47,0.12)] bg-[#F7F5F3] hover:bg-white transition-all duration-300 group ${
-                index < 2 ? "md:border-r border-[rgba(55,50,47,0.12)]" : ""
-              }`}
+              className="w-full bg-white rounded-2xl p-8 sm:p-10 border border-[rgba(55,50,47,0.1)] shadow-xs hover:border-[#39F763]/40 hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between items-start gap-6 group"
             >
               <div className="w-10 h-10 rounded-lg bg-white border border-[rgba(55,50,47,0.1)] flex items-center justify-center text-[#1C1A18] group-hover:bg-[#181716] group-hover:text-[#39F763] transition-all shadow-xs">
                 {stat.icon}
@@ -88,18 +73,6 @@ export default function AchievementsSection() {
               </div>
             </ScrollReveal>
           ))}
-        </div>
-
-        {/* Right decorative hatch */}
-        <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch relative overflow-hidden hidden sm:block">
-          <div className="w-[120px] left-[-40px] top-[-120px] absolute flex flex-col">
-            {Array.from({ length: 70 }).map((_, i) => (
-              <div
-                key={i}
-                className="self-stretch h-3 rotate-[-45deg] origin-top-left outline outline-[0.5px] outline-[rgba(3,7,18,0.08)] outline-offset-[-0.25px]"
-              />
-            ))}
-          </div>
         </div>
       </div>
     </section>
