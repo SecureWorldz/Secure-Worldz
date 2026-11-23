@@ -1,14 +1,13 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import fs from "fs"
-import path from "path"
 import Header from "@/components/header"
 import FooterSection from "@/components/footer-section"
 import CTASection from "@/components/cta-section"
 import ScrollProgress from "@/components/scroll-progress"
 import { ScrollReveal } from "@/components/scroll-reveal"
 import { BLOG_POSTS } from "@/lib/data/blogs"
+import { readCollection, isFirebaseConfigured } from "@/lib/content/firebase-server"
 import { MarkdownBlogContent } from "@/components/markdown-blog-content"
 import {
   ArrowLeft,
@@ -33,15 +32,18 @@ interface BlogPostPageProps {
   }
 }
 
-export async function generateStaticParams() {
-  return BLOG_POSTS.map((post) => ({
-    slug: post.slug,
-  }))
+// Content lives in Firestore, so render per request rather than at build time.
+export const dynamic = "force-dynamic"
+
+async function getPosts() {
+  if (!isFirebaseConfigured()) return BLOG_POSTS
+  return (await readCollection<(typeof BLOG_POSTS)[number]>("blogs")) ?? BLOG_POSTS
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params
-  const post = BLOG_POSTS.find((p) => p.slug === slug)
+  const posts = await getPosts()
+  const post = posts.find((p) => p.slug === slug)
   if (!post) {
     return {
       title: "Article Not Found — SECUREWORLDZ",
@@ -51,7 +53,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   return {
     title: `${post.title} — SECUREWORLDZ`,
     description: post.metaDescription,
-    keywords: post.tags,
+    keywords: post.tags ?? [],
     authors: [{ name: post.author }],
     openGraph: {
       title: post.title,
@@ -63,25 +65,18 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params
-  const post = BLOG_POSTS.find((p) => p.slug === slug)
+  const posts = await getPosts()
+  const post = posts.find((p) => p.slug === slug)
 
   if (!post) {
     notFound()
   }
 
-  // Check if a dedicated markdown file exists for this blog slug
-  const mdPath = path.join(process.cwd(), "lib", "data", "blogs", `${slug}.md`)
-  let markdownContent: string | null = null
-  try {
-    if (fs.existsSync(mdPath)) {
-      markdownContent = fs.readFileSync(mdPath, "utf-8")
-    }
-  } catch (err) {
-    console.error(`Failed to load markdown for ${slug}:`, err)
-  }
+  // Markdown authored in the admin app takes precedence over paragraphs.
+  const markdownContent = post.markdown || null
 
   // Related posts from other categories
-  const relatedPosts = BLOG_POSTS.filter((p) => p.id !== post.id).slice(0, 3)
+  const relatedPosts = posts.filter((p) => p.id !== post.id).slice(0, 3)
 
   return (
     <div className="w-full min-h-screen relative bg-[#F7F5F3] overflow-x-hidden flex flex-col justify-start items-center">
@@ -274,7 +269,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               ) : (
                 /* Fallback to Default Paragraphs */
                 <div className="prose prose-neutral max-w-none flex flex-col gap-5 text-[#37322F] font-sans text-sm sm:text-base leading-[1.8]">
-                  {post.content.map((paragraph, index) => (
+                  {(post.content ?? []).map((paragraph, index) => (
                     <ScrollReveal key={index} direction="up" distance={14} delay={index * 40}>
                       <p className="text-[#37322F] font-normal">{paragraph}</p>
                     </ScrollReveal>
@@ -291,7 +286,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <span className="text-xs font-semibold uppercase tracking-wider text-[#828387] font-sans mr-2">
                   Tags:
                 </span>
-                {post.tags.map((tag, i) => (
+                {(post.tags ?? []).map((tag, i) => (
                   <span
                     key={i}
                     className="text-xs text-[#37322F] bg-white border border-[rgba(55,50,47,0.15)] px-3 py-1 rounded-full font-sans flex items-center gap-1.5 shadow-xs"

@@ -9,7 +9,7 @@ Two independent Next.js apps share one Firebase Firestore database:
 
 ## Collections
 
-`courses`, `workshops`, `testimonials`, `products`, `meetups`.
+`courses`, `workshops`, `testimonials`, `products`, `meetups`, `blogs`.
 
 Each document is keyed by a stable slug in its `id` field. An optional numeric
 `order` field controls display sequence. `createdAt` / `updatedAt` are server
@@ -44,5 +44,17 @@ public site never writes to Firestore and never ships privileged credentials.
 5. Public-site reads need one of `FIREBASE_SERVICE_ACCOUNT_JSON`,
    `GOOGLE_APPLICATION_CREDENTIALS`, or `FIREBASE_PROJECT_ID` (Application Default
    Credentials). With none of them, the site keeps working from static data.
+
+## Current setup (already provisioned)
+
+- Firebase project: `secureworldz-content` (region `asia-south1`, Spark plan)
+- Web app: `SECUREWORLDZ Web` (`1:555217993519:web:9d1a13ddea363adbababda`)
+- Service account: `secureworldz-admin@secureworldz-content.iam.gserviceaccount.com`
+  with the Firebase Admin role; key stored outside the repo at
+  `/home/Krish/.config/secureworldz/firebase-service-account.json` (mode 600)
+- `.env.local` (public) and `admin/.env.local` are git-ignored and point at that key
+- Firestore rules from `admin/firestore.rules` are deployed; Email/Password sign-in is enabled
+- Staff login: `admin@secureworldz.in` (password is in `admin/.env.local`)
+- All six collections are seeded with the site's current content, including 9 blog posts
 
 Full admin setup and design notes: `admin/README.md`.

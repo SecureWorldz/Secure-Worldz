@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { AlertCircle, ArrowLeft, Loader2, Save, Trash2 } from 'lucide-react'
+import { AlertCircle, ArrowLeft, FileUp, Loader2, Save, Trash2 } from 'lucide-react'
 import { ZodError } from 'zod'
 import {
   fromFormValues,
@@ -30,6 +30,7 @@ import {
   labelClass,
 } from '@/lib/ui'
 import NotConfigured from './not-configured'
+import { parseMarkdownFile } from '@/lib/markdown-import'
 
 export default function ResourceForm({
   collection,
@@ -47,6 +48,7 @@ export default function ResourceForm({
   const [saving, setSaving] = useState(false)
   const [deleting, setDeleting] = useState(false)
   const [error, setError] = useState('')
+  const [importNote, setImportNote] = useState('')
 
   useEffect(() => {
     if (!config || !id || !isFirebaseConfigured) {
@@ -86,21 +88,20 @@ export default function ResourceForm({
     return err instanceof Error ? err.message : 'Something went wrong.'
   }
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
+  async function persist(nextValues: FormValues): Promise<boolean> {
     setError('')
-    if (!config) return
+    if (!config) return false
     if (!isFirebaseConfigured) {
       setError('Firebase is not configured. See .env.example.')
-      return
+      return false
     }
 
     let parsed: Record<string, unknown>
     try {
-      parsed = config.schema.parse(fromFormValues(config, values))
+      parsed = config.schema.parse(fromFormValues(config, nextValues))
     } catch (err) {
       setError(describeError(err))
-      return
+      return false
     }
 
     setSaving(true)
@@ -121,10 +122,39 @@ export default function ResourceForm({
 
       router.push(`/${config.name}`)
       router.refresh()
+      return true
     } catch (err) {
       setError(describeError(err))
+      return false
     } finally {
       setSaving(false)
+    }
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    await persist(values)
+  }
+
+  async function handleMarkdownFile(
+    event: React.ChangeEvent<HTMLInputElement>,
+    publish: boolean,
+  ) {
+    const file = event.target.files?.[0]
+    event.target.value = ''
+    if (!file) return
+
+    try {
+      const result = parseMarkdownFile(await file.text(), file.name)
+      const nextValues = { ...values, ...result.values }
+      setValues(nextValues)
+      setImportNote(
+        `Imported “${result.title}” (${result.wordCount} words). ` +
+          (publish ? 'Publishing…' : 'Review the fields, then click Save.'),
+      )
+      if (publish) await persist(nextValues)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Could not read that Markdown file.')
     }
   }
 
@@ -194,6 +224,42 @@ export default function ResourceForm({
           onSubmit={(e) => void handleSubmit(e)}
           className="rounded-2xl border border-ink/10 bg-white p-6 shadow-sm md:p-8"
         >
+          {config.name === 'blogs' && (
+            <div className="mb-7 rounded-xl border border-ink/10 bg-[#F7F5F3] p-4">
+              <p className="text-sm font-medium text-ink">Import a Markdown file</p>
+              <p className="mt-1 text-xs leading-relaxed text-ink/55">
+                Reads optional <code className="font-mono">---</code> frontmatter (title, slug,
+                category, author, date, excerpt, tags, readTime) and uses the rest as the article
+                body. Without frontmatter, the first heading becomes the title.
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <label className={`${ghostBtn} cursor-pointer`}>
+                  <FileUp size={15} /> Import &amp; review
+                  <input
+                    type="file"
+                    accept=".md,.mdx,text/markdown,text/plain"
+                    className="hidden"
+                    onChange={(e) => void handleMarkdownFile(e, false)}
+                  />
+                </label>
+                <label className={`${accentBtn} cursor-pointer`}>
+                  <FileUp size={15} /> Import &amp; publish
+                  <input
+                    type="file"
+                    accept=".md,.mdx,text/markdown,text/plain"
+                    className="hidden"
+                    onChange={(e) => void handleMarkdownFile(e, true)}
+                  />
+                </label>
+              </div>
+              {importNote && (
+                <p className="mt-3 text-xs text-ink/60" role="status">
+                  {importNote}
+                </p>
+              )}
+            </div>
+          )}
+
           <div className="grid gap-5 md:grid-cols-2">
             {config.fields.map((field) => (
               <FieldControl

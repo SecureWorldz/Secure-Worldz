@@ -7,20 +7,22 @@ import FooterSection from "@/components/footer-section"
 import CTASection from "@/components/cta-section"
 import ScrollProgress from "@/components/scroll-progress"
 import { ScrollReveal } from "@/components/scroll-reveal"
-import { BLOG_POSTS, BLOG_CATEGORIES } from "@/lib/data/blogs"
+import { useContent } from "@/hooks/use-content"
 import { BookOpen, User, ArrowRight, Tag } from "lucide-react"
 
 export default function BlogsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [searchQuery, setSearchQuery] = useState("")
+  const blogPosts = useContent("blogs")
+  const categories = ["All", ...Array.from(new Set(blogPosts.map((post) => post.category).filter(Boolean)))]
 
-  const filteredPosts = BLOG_POSTS.filter((post) => {
+  const filteredPosts = blogPosts.filter((post) => {
     const matchesCategory =
       selectedCategory === "All" || post.category === selectedCategory
     const matchesSearch =
       post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase()))
+      (post.tags ?? []).some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase()))
     return matchesCategory && matchesSearch
   })
 
@@ -67,7 +69,7 @@ export default function BlogsPage() {
             {/* Category Filter Pills */}
             <div className="w-full px-4 sm:px-8 py-5 border-b border-[rgba(55,50,47,0.12)] bg-white/40 flex justify-center items-center overflow-x-auto">
               <div className="flex items-center gap-1.5 flex-wrap justify-center">
-                {BLOG_CATEGORIES.map((category) => (
+                {categories.map((category) => (
                   <button
                     key={category}
                     onClick={() => setSelectedCategory(category)}
