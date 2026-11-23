@@ -1,50 +1,54 @@
 "use client"
 
 import Link from "next/link"
-import { Youtube, Clock, ThumbsUp, Layers, PlayCircle, ArrowRight, Video } from "lucide-react"
+import { Clock, ThumbsUp, Layers, PlayCircle, ArrowRight, Video } from "lucide-react"
 import { ScrollReveal } from "@/components/scroll-reveal"
+import { YoutubePlayer } from "@/components/youtube-player"
 
 export default function FeaturedMasterclasses() {
   const masterclasses = [
-    {
-      title: "How to do vibe hacking for free?",
-      badge: "Upcoming Live Workshop",
-      description: "A hands-on masterclass on AI prompt-driven experimentation, system boundary probing, and free security tools.",
-      duration: "Live Interactive Session",
-      likes: "October 30, 2026",
-      topics: "5 Core Modules",
-      highlight: "Free Community Access",
-      link: "/workshops",
-      isInternal: true,
-    },
-    {
-      title: "VAPT & Web Security Practical Foundation",
-      badge: "CyberJai YouTube Series",
-      description: "Comprehensive walkthrough covering Burp Suite, SQL injection, XSS, and modern application attack vectors in English & Tamil.",
-      duration: "6+ Hours Deep Dive",
-      likes: "12k+ Views",
-      topics: "OWASP Top 10",
-      highlight: "Practical Lab Walkthrough",
-      link: "https://youtube.com/@CyberJai",
-      isInternal: false,
-    },
-    {
-      title: "Linux & Network Defense for Cybersecurity",
-      badge: "CyberJai YouTube Series",
-      description: "From essential Linux system tools to packet inspection with Wireshark and automated triage scripts.",
-      duration: "4+ Hours Tutorial",
-      likes: "9.5k+ Views",
-      topics: "Linux & Networking",
-      highlight: "Zero-to-Hero Roadmap",
-      link: "https://youtube.com/@CyberJai",
-      isInternal: false,
-    },
+  {
+    title: "How to Become a Hacker in 2026?",
+    badge: "Cybersecurity Roadmap",
+    description: "A beginner-friendly guide to ethical hacking and cybersecurity. Explore the essential skills, networking, Linux, programming, certifications, career opportunities, and salary expectations for aspiring ethical hackers.",
+    duration: "24:07",
+    likes: "July 10, 2026",
+    topics: "12+ Key Topics",
+    highlight: "Beginner to Ethical Hacker",
+    videoId: "Fzzim7iVibI",
+    link: "https://youtu.be/Fzzim7iVibI",
+    isInternal: false,
+  },
+  {
+    title: "The Complete Cyber Forensics Roadmap | 2026",
+    badge: "Digital Forensics",
+    description: "Explore the roadmap to becoming a cyber forensics professional. Understand the field of digital forensics, the skills required, career opportunities, and the learning path to enter the world of cybercrime investigation and digital evidence analysis.",
+    duration: "YouTube Video",
+    likes: "2026",
+    topics: "Cyber Forensics Roadmap",
+    highlight: "Build a Career in Digital Forensics",
+    videoId: "k2XiUO-juK4",
+    link: "https://youtu.be/k2XiUO-juK4",
+    isInternal: false,
+  },
+  {
+    title: "I Tested the Viral GitHub Repo That Reverse Engineers Anything",
+    badge: "AI & Open Source",
+    description: "Discover Reverse Engineer Anything (REA), a viral open-source project that helps AI agents inspect and understand existing software. Explore how reverse engineering tools work with AI coding agents to analyze applications, understand their features, and recreate similar functionality.",
+    duration: "YouTube Video",
+    likes: "October 2026",
+    topics: "AI Agents & Reverse Engineering",
+    highlight: "Explore the Future of AI-Powered Development",
+    videoId: "xubXao5wKJY",
+    link: "https://youtu.be/xubXao5wKJY",
+    isInternal: false,
+  },
   ]
 
   return (
     <section id="masterclasses" className="w-full border-b border-[rgba(55,50,47,0.12)] flex flex-col justify-center items-center">
       {/* Header Section */}
-      <div className="content-container py-12 md:py-16 border-b border-[rgba(55,50,47,0.12)] flex justify-center items-center">
+      <div className="self-stretch px-4 sm:px-6 md:px-24 py-12 md:py-16 border-b border-[rgba(55,50,47,0.12)] flex justify-center items-center">
         <ScrollReveal className="w-full max-w-[620px] flex flex-col justify-start items-center gap-4 text-center">
           <div className="px-[14px] py-[6px] bg-white shadow-[0px_0px_0px_4px_rgba(55,50,47,0.05)] rounded-[90px] flex items-center gap-2 border border-[rgba(2,6,23,0.08)]">
             <Video className="w-3.5 h-3.5 text-[#37322F]" />
@@ -60,41 +64,39 @@ export default function FeaturedMasterclasses() {
         </ScrollReveal>
       </div>
 
-      {/* 3 Masterclass Cards */}
-      <div className="content-container py-8 sm:py-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* Connected Editorial Grid for Masterclasses */}
+      <div className="self-stretch flex justify-center items-start">
+        {/* Left decorative hatch */}
+        <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch relative overflow-hidden hidden sm:block">
+          <div className="w-[120px] left-[-40px] top-[-120px] absolute flex flex-col">
+            {Array.from({ length: 90 }).map((_, i) => (
+              <div
+                key={i}
+                className="self-stretch h-3 rotate-[-45deg] origin-top-left outline outline-[0.5px] outline-[rgba(3,7,18,0.08)] outline-offset-[-0.25px]"
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* 3 Masterclass Columns in Connected Grid */}
+        <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-0 border-l border-r border-[rgba(55,50,47,0.12)]">
           {masterclasses.map((cls, index) => (
             <ScrollReveal
               key={index}
               delay={index * 110}
               direction="up"
               distance={22}
-              className="w-full bg-white rounded-2xl p-6 sm:p-8 border border-[rgba(55,50,47,0.1)] shadow-xs hover:border-[#39F763]/40 hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between items-start gap-6 group"
+              className={`p-6 sm:p-8 flex flex-col justify-between items-start gap-6 border-b md:border-b-0 border-[rgba(55,50,47,0.12)] bg-[#F7F5F3] hover:bg-white transition-all duration-300 group ${
+                index < 2 ? "md:border-r border-[rgba(55,50,47,0.12)]" : ""
+              }`}
             >
               <div className="flex flex-col gap-4 w-full">
-                {/* Visual Video Card Preview */}
-                <div className="w-full h-40 bg-[#1F1E1D] rounded-xl border border-[rgba(55,50,47,0.15)] p-4 flex flex-col justify-between text-white relative overflow-hidden group/thumb shadow-xs">
-                  <div className="flex justify-between items-center z-10">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400">
-                      SECUREWORLDZ FREE ACCESS
-                    </span>
-                    <Youtube className="w-4 h-4 text-red-500" />
-                  </div>
-
-                  <div className="z-10 flex items-center justify-center my-auto">
-                    <div className="w-11 h-11 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white border border-white/30 group-hover:bg-[#181716] group-hover:text-[#39F763] group-hover/thumb:scale-110 transition-all shadow-xs">
-                      <PlayCircle className="w-6 h-6 group-hover:text-[#39F763] transition-colors" />
-                    </div>
-                  </div>
-
-                  <div className="z-10 flex justify-between items-center text-[10px] font-mono text-neutral-400 pt-1">
-                    <span>{cls.highlight}</span>
-                    <span>HD 1080P</span>
-                  </div>
-
-                  {/* Subtle pattern background */}
-                  <div className="absolute inset-0 bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:12px_12px] opacity-30" />
-                </div>
+                {/* YouTube Video Player */}
+                <YoutubePlayer
+                  videoId={cls.videoId}
+                  title={cls.title}
+                  highlight={cls.highlight}
+                />
 
                 {/* Badge & Title */}
                 <div>
@@ -154,6 +156,18 @@ export default function FeaturedMasterclasses() {
               )}
             </ScrollReveal>
           ))}
+        </div>
+
+        {/* Right decorative hatch */}
+        <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch relative overflow-hidden hidden sm:block">
+          <div className="w-[120px] left-[-40px] top-[-120px] absolute flex flex-col">
+            {Array.from({ length: 90 }).map((_, i) => (
+              <div
+                key={i}
+                className="self-stretch h-3 rotate-[-45deg] origin-top-left outline outline-[0.5px] outline-[rgba(3,7,18,0.08)] outline-offset-[-0.25px]"
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

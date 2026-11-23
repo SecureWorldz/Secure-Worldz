@@ -1,8 +1,8 @@
 # SECUREWORLDZ Content Admin
 
 A standalone Next.js app for staff to manage the public site's content in Firebase
-Firestore. It handles five collections: `courses`, `workshops`, `testimonials`,
-`products` and `meetups`.
+Firestore. It handles six collections: `courses`, `workshops`, `testimonials`,
+`products`, `meetups` and `blogs`.
 
 ## Setup
 
@@ -62,6 +62,43 @@ Firestore. It handles five collections: `courses`, `workshops`, `testimonials`,
    available. The dev/start scripts use port 3001 so they don't collide with the
    public site on port 3000.
 
+## Importing a blog from Markdown
+
+On **New Blog Post** (or when editing one), use **Import & review** to upload a
+`.md` / `.mdx` file. The importer (`lib/markdown-import.ts`) reads optional YAML
+frontmatter at the top of the file and maps it to the form. The body is split
+into plain-text paragraphs for the **Article paragraphs** field, and tags are
+taken from frontmatter (or derived from subheadings and the category):
+
+```markdown
+---
+title: "My Article"
+slug: my-article
+category: "AI Security"
+author: "Cyber Jai"
+date: "23 November 2026"
+excerpt: "Short summary"
+tags: [AI Security, Import]
+readTime: "5 min read"
+---
+
+# My Article
+
+Article body in Markdown...
+```
+
+Supported frontmatter keys: `title`/`name`, `slug`, `category`/`type`, `author`,
+`date`/`publishDate`, `excerpt`/`description`, `metaDescription`, `tags`, and
+`readTime`. Tags may be a comma-separated list or a YAML-style `- item` list.
+Without frontmatter, the first `#` heading becomes the title, the first paragraph
+becomes the excerpt, and read time is estimated from word count.
+
+- **Import & review** fills the form so you can adjust fields before saving.
+- **Import & publish** creates the post immediately.
+
+The Markdown body is stored in the `markdown` field and rendered on the public
+article page in place of paragraph content.
+
 ## Architecture / system design
 
 ```
@@ -78,7 +115,7 @@ Firestore. It handles five collections: `courses`, `workshops`, `testimonials`,
                   │   Firebase Firestore     │  ← single source of truth
                   │ courses / workshops /    │    (runtime content)
                   │ testimonials / products  │
-                  │ meetups                  │
+                  │ meetups / blogs          │
                   └────────────┬─────────────┘
                                │ reads (server-side Firebase Admin SDK)
                                ▼
@@ -92,11 +129,11 @@ Firestore. It handles five collections: `courses`, `workshops`, `testimonials`,
 ### Key decisions
 
 - **Firestore is the single source of truth at runtime.** Both apps read and write
-  the same five collections. The public site's bundled constants remain as a
+  the same six collections. The public site's bundled constants remain as a
   static fallback, but a Firestore document, when present, wins.
 - **The admin app is the only writer.** Staff sign in with Firebase Auth
   (email/password). Writes go through the client SDK but are authorized by
-  `firestore.rules`: the five content collections are publicly readable and
+  `firestore.rules`: the six content collections are publicly readable and
   writable only when `request.auth.token.admin == true`. The UI deliberately does
   not check custom claims; the rules are the actual security boundary.
 - **Why the public site never writes from the client.** Giving the public site

@@ -6,6 +6,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import {
   BookOpen,
   CalendarDays,
+  FileText,
   Home,
   Loader2,
   LogOut,
@@ -23,6 +24,7 @@ const icons: Record<string, React.ComponentType<{ size?: number }>> = {
   testimonials: Users,
   products: Package,
   meetups: Sparkles,
+  blogs: FileText,
 }
 
 export default function DashboardLayout({

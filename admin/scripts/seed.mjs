@@ -20,6 +20,7 @@ const COLLECTIONS = [
   'testimonials',
   'products',
   'meetups',
+  'blogs',
 ]
 
 const here = path.dirname(fileURLToPath(import.meta.url))

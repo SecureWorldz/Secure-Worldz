@@ -6,6 +6,7 @@ export type CollectionName =
   | 'testimonials'
   | 'products'
   | 'meetups'
+  | 'blogs'
 
 export const COLLECTION_NAMES: CollectionName[] = [
   'courses',
@@ -13,6 +14,7 @@ export const COLLECTION_NAMES: CollectionName[] = [
   'testimonials',
   'products',
   'meetups',
+  'blogs',
 ]
 
 export type FieldKind =
@@ -113,6 +115,21 @@ const meetupSchema = z.object({
   status: z.enum(['Upcoming', 'Completed']),
   highlights: z.array(z.string()),
   imageUrl: z.string().optional(),
+})
+
+const blogSchema = z.object({
+  id: z.string().optional(),
+  slug: z.string().min(1, 'Slug is required'),
+  title: z.string().min(1, 'Title is required'),
+  category: z.string(),
+  author: z.string(),
+  publishDate: z.string(),
+  excerpt: z.string(),
+  metaDescription: z.string(),
+  content: z.array(z.string()),
+  markdown: z.string().optional(),
+  tags: z.array(z.string()),
+  readTime: z.string(),
 })
 
 /* -------------------------------------------------------------------------- */
@@ -289,6 +306,44 @@ export const COLLECTIONS: Record<CollectionName, CollectionConfig> = {
       { name: 'status', label: 'Status', kind: 'select', options: ['Upcoming', 'Completed'] },
       { name: 'highlights', label: 'Highlights', kind: 'stringArray', hint: 'One highlight per line.' },
       { name: 'imageUrl', label: 'Image URL', kind: 'text', placeholder: 'https://…/cover.jpg (optional)' },
+    ],
+  },
+
+  blogs: {
+    name: 'blogs',
+    label: 'Blogs',
+    singular: 'Blog Post',
+    description: 'Articles, field notes and career guides published on /blogs.',
+    titleField: 'title',
+    subtitleField: 'category',
+    schema: blogSchema,
+    defaults: {
+      id: '',
+      slug: '',
+      title: '',
+      category: 'AI Learning',
+      author: 'Cyber Jai',
+      publishDate: '',
+      excerpt: '',
+      metaDescription: '',
+      content: '',
+      markdown: '',
+      tags: '',
+      readTime: '4 min read',
+    },
+    fields: [
+      idField,
+      { name: 'slug', label: 'URL slug', kind: 'text', required: true, placeholder: 'my-article-slug', hint: 'Used in the public article URL. Keep it stable.' },
+      { name: 'title', label: 'Title', kind: 'text', required: true, placeholder: 'What Is AI Based Cyber Learning?' },
+      { name: 'category', label: 'Category', kind: 'text', placeholder: 'AI Learning' },
+      { name: 'author', label: 'Author', kind: 'text', placeholder: 'Cyber Jai' },
+      { name: 'publishDate', label: 'Publish date', kind: 'text', placeholder: '23 November 2026' },
+      { name: 'excerpt', label: 'Excerpt', kind: 'textarea' },
+      { name: 'metaDescription', label: 'Meta description', kind: 'text' },
+      { name: 'content', label: 'Article paragraphs', kind: 'stringArray', hint: 'One paragraph per line. Ignored when Markdown is provided.' },
+      { name: 'markdown', label: 'Markdown (optional)', kind: 'textarea', hint: 'Paste full Markdown to override the paragraph layout.' },
+      { name: 'tags', label: 'Tags', kind: 'stringArray', hint: 'One tag per line.' },
+      { name: 'readTime', label: 'Read time', kind: 'text', placeholder: '4 min read' },
     ],
   },
 }

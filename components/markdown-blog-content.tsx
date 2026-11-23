@@ -30,9 +30,11 @@ function formatInline(text: string): React.ReactNode {
     const codeMatch = remainder.match(/`([^`]+)`/)
     // 2. Bold: **bold**
     const boldMatch = remainder.match(/\*\*([^*]+)\*\*/)
-    // 3. Link: [text](url)
+    // 3. Markdown Link: [text](url)
     const linkMatch = remainder.match(/\[([^\]]+)\]\(([^)]+)\)/)
-    // 4. Italic: *italic*
+    // 4. Raw URL: https://...
+    const rawUrlMatch = remainder.match(/(https?:\/\/[^\s)<]+)/)
+    // 5. Italic: *italic*
     const italicMatch = remainder.match(/(?<!\*)\*([^*]+)\*(?!\*)/)
 
     // Find the earliest match
@@ -40,9 +42,10 @@ function formatInline(text: string): React.ReactNode {
       codeMatch ? { type: "code", index: codeMatch.index!, match: codeMatch } : null,
       boldMatch ? { type: "bold", index: boldMatch.index!, match: boldMatch } : null,
       linkMatch ? { type: "link", index: linkMatch.index!, match: linkMatch } : null,
+      rawUrlMatch ? { type: "rawUrl", index: rawUrlMatch.index!, match: rawUrlMatch } : null,
       italicMatch ? { type: "italic", index: italicMatch.index!, match: italicMatch } : null,
     ].filter(Boolean) as Array<{
-      type: "code" | "bold" | "link" | "italic"
+      type: "code" | "bold" | "link" | "rawUrl" | "italic"
       index: number
       match: RegExpMatchArray
     }>
@@ -89,6 +92,20 @@ function formatInline(text: string): React.ReactNode {
         >
           <span>{m[1]}</span>
           {isExternal && <ExternalLink className="w-3 h-3 inline ml-0.5 opacity-70" />}
+        </a>
+      )
+    } else if (first.type === "rawUrl") {
+      const url = m[1]
+      parts.push(
+        <a
+          key={`rawurl-${keyIdx++}`}
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#181716] font-mono text-xs underline underline-offset-4 decoration-[#39F763] hover:text-[#39F763] transition-colors inline-flex items-center gap-1 break-all"
+        >
+          <span>{url}</span>
+          <ExternalLink className="w-3 h-3 inline shrink-0 opacity-70" />
         </a>
       )
     } else if (first.type === "italic") {
