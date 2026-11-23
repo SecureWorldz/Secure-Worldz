@@ -1,0 +1,13 @@
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+
+# typescript
+*.tsbuildinfo
+
+# env files — keep the example, ignore real credentials
+.env*
+!.env.example

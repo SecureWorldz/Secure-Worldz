@@ -6,7 +6,7 @@ import FooterSection from "@/components/footer-section"
 import CTASection from "@/components/cta-section"
 import ScrollProgress from "@/components/scroll-progress"
 import { ScrollReveal } from "@/components/scroll-reveal"
-import { WORKSHOPS } from "@/lib/data/workshops"
+import { useContent } from "@/hooks/use-content"
 import { Calendar, Clock, MapPin, Users, CheckCircle2, Send, Sparkles, ArrowRight } from "lucide-react"
 
 export default function WorkshopsPage() {
@@ -18,8 +18,9 @@ export default function WorkshopsPage() {
   })
   const [isSubmitted, setIsSubmitted] = useState(false)
 
-  const upcomingWorkshop = WORKSHOPS.find((w) => w.status === "Upcoming")
-  const pastEvents = WORKSHOPS.filter((w) => w.status === "Completed")
+  const workshops = useContent("workshops")
+  const upcomingWorkshop = workshops.find((w) => w.status === "Upcoming")
+  const pastEvents = workshops.filter((w) => w.status === "Completed")
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -59,7 +60,7 @@ export default function WorkshopsPage() {
             {/* Upcoming Workshop Spotlight (October 30) */}
             {upcomingWorkshop && (
               <div className="w-full border-b border-[rgba(55,50,47,0.12)] bg-white/70 py-12 px-4 sm:px-8">
-                <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 flex flex-col lg:flex-row gap-10 items-start">
+                <div className="content-container flex flex-col lg:flex-row gap-10 items-start">
                   {/* Left Column: Workshop Details */}
                   <ScrollReveal direction="left" distance={24} delay={100} className="flex-1 flex flex-col gap-6">
                     <div className="flex items-center gap-2">
@@ -205,7 +206,7 @@ export default function WorkshopsPage() {
 
             {/* Past Events / Community Meetups */}
             <div className="w-full py-12 px-4 sm:px-8 border-b border-[rgba(55,50,47,0.12)]">
-              <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 flex flex-col gap-6">
+              <div className="content-container flex flex-col gap-6">
                 <ScrollReveal>
                   <h3 className="text-xl sm:text-2xl font-serif text-[#37322F]">
                     Community Gatherings & Past Events

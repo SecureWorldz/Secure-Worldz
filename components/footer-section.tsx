@@ -4,7 +4,7 @@ export default function FooterSection() {
   return (
     <footer id="contact" className="w-full pt-12 flex flex-col justify-start items-center">
       {/* Main Footer Content */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 flex flex-col md:flex-row justify-between items-start pb-10 pt-0 gap-8">
+      <div className="content-container flex flex-col md:flex-row justify-between items-start pb-10 pt-0 gap-8">
         {/* Brand & Contact Info */}
         <div className="h-auto p-4 md:p-6 flex flex-col justify-start items-start gap-6 max-w-[380px]">
           <div className="flex flex-col gap-1.5">
@@ -145,7 +145,7 @@ export default function FooterSection() {
 
       {/* Copyright Bar */}
       <div className="w-full border-t border-[rgba(55,50,47,0.1)] py-4">
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 flex flex-col sm:flex-row justify-between items-center text-xs text-[#828387] gap-2">
+        <div className="content-container flex flex-col sm:flex-row justify-between items-center text-xs text-[#828387] gap-2">
           <div>© {new Date().getFullYear()} SECUREWORLDZ. All rights reserved.</div>
           <div className="flex items-center gap-4">
             <span>Products Built by People Who Build Tech</span>

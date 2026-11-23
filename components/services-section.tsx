@@ -38,7 +38,7 @@ export default function ServicesSection() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(55,50,47,0.03),transparent_60%)] pointer-events-none" />
 
       {/* Header Section */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 mb-12 sm:mb-16 flex flex-col justify-center items-center text-center relative z-10">
+      <div className="content-container mb-12 sm:mb-16 flex flex-col justify-center items-center text-center relative z-10">
         <ScrollReveal className="w-full max-w-[640px] flex flex-col justify-start items-center gap-4 text-center">
           {/* Badge */}
           <div className="px-[14px] py-[6px] bg-white shadow-[0px_0px_0px_4px_rgba(55,50,47,0.05)] rounded-[90px] flex items-center gap-2 border border-[rgba(2,6,23,0.08)]">
@@ -56,7 +56,7 @@ export default function ServicesSection() {
       </div>
 
       {/* Clean 3x2 Grid of 6 Cards Matching the Testimonials UI */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+      <div className="content-container relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {SERVICES.map((service, index) => (
             <ScrollReveal
@@ -105,7 +105,7 @@ export default function ServicesSection() {
       </div>
 
       {/* Services Action Strip */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 mt-12 sm:mt-16 relative z-10">
+      <div className="content-container mt-12 sm:mt-16 relative z-10">
         <div className="w-full p-6 sm:p-7 rounded-2xl bg-white border border-[rgba(55,50,47,0.1)] shadow-xs flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
           <div className="flex flex-col">
             <span className="text-sm sm:text-base font-serif font-medium text-[#1C1A18]">

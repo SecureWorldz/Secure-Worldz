@@ -24,6 +24,7 @@ export function ScrollReveal({
   once = true,
 }: ScrollRevealProps) {
   const [isVisible, setIsVisible] = useState(false)
+  const [settled, setSettled] = useState(false)
   const domRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -83,13 +84,16 @@ export function ScrollReveal({
   return (
     <div
       ref={domRef}
+      data-scroll-reveal
       className={className}
+      onTransitionEnd={() => setSettled(true)}
       style={{
         opacity: isVisible ? 1 : 0,
         transform: getTransform(),
         transition: `opacity ${duration}ms cubic-bezier(0.16, 1, 0.3, 1), transform ${duration}ms cubic-bezier(0.16, 1, 0.3, 1)`,
         transitionDelay: `${delay}ms`,
-        willChange: "opacity, transform",
+        // Hint the compositor only while the reveal is actually in flight.
+        willChange: isVisible && !settled ? "opacity, transform" : "auto",
       }}
     >
       {children}

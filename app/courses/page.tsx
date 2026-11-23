@@ -8,7 +8,7 @@ import CTASection from "@/components/cta-section"
 import ScrollProgress from "@/components/scroll-progress"
 import { ScrollReveal } from "@/components/scroll-reveal"
 import CareerGuidanceDialog from "@/components/career-guidance-dialog"
-import { COURSES } from "@/lib/data/courses"
+import { useContent } from "@/hooks/use-content"
 import {
   GraduationCap,
   Check,
@@ -30,11 +30,12 @@ import {
 export default function CoursesPage() {
   const [selectedLevel, setSelectedLevel] = useState<"All" | "Beginner" | "Advanced">("All")
   const [openFaq, setOpenFaq] = useState<number | null>(null)
+  const courses = useContent("courses")
 
   const filteredCourses =
     selectedLevel === "All"
-      ? COURSES
-      : COURSES.filter((c) => c.level === selectedLevel)
+      ? courses
+      : courses.filter((c) => c.level === selectedLevel)
 
   const courseTechStacks: Record<string, string[]> = {
     "cybersecurity-starter-program": ["Linux", "Wireshark", "Nmap", "Bash", "Python", "AI Prompting"],
@@ -136,7 +137,7 @@ export default function CoursesPage() {
             </div>
 
             {/* Filter / Toggle Pills */}
-            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pt-12 pb-6 flex justify-center items-center">
+            <div className="content-container pt-12 pb-6 flex justify-center items-center">
               <div className="p-1.5 bg-white rounded-full flex items-center gap-1.5 border border-[rgba(55,50,47,0.1)] shadow-xs">
                 {(["All", "Beginner", "Advanced"] as const).map((level) => (
                   <button
@@ -155,7 +156,7 @@ export default function CoursesPage() {
             </div>
 
             {/* Courses Cards Section with Distinct Cards & Neat Spacing */}
-            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8">
+            <div className="content-container py-8">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
                 {filteredCourses.map((course, index) => {
                   const isFeatured = course.featured
@@ -355,7 +356,7 @@ export default function CoursesPage() {
             </div>
 
             {/* Program Comparison Table (Starter vs Advanced) */}
-            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-14">
+            <div className="content-container py-14">
               <ScrollReveal direction="up" distance={20} className="w-full bg-white rounded-3xl border border-[rgba(55,50,47,0.1)] p-6 sm:p-10 shadow-xs hover:border-[#39F763]/40 hover:shadow-md transition-all duration-300 group">
                 <div className="text-center max-w-[620px] mx-auto mb-8 sm:mb-10">
                   <span className="text-[11px] font-semibold uppercase tracking-wider text-[#828387] group-hover:text-[#39F763] transition-colors font-sans">
@@ -393,7 +394,7 @@ export default function CoursesPage() {
             </div>
 
             {/* Verified Certification & Career Assurance */}
-            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pb-14">
+            <div className="content-container pb-14">
               <ScrollReveal direction="up" distance={20} className="w-full rounded-3xl bg-gradient-to-br from-[#1C1A18] to-[#141416] text-white p-8 sm:p-12 border border-white/[0.08] shadow-lg flex flex-col md:flex-row items-center justify-between gap-8 hover:border-[#39F763]/40 hover:shadow-[0_16px_40px_-10px_rgba(57,247,99,0.2)] transition-all duration-300 group">
                 <div className="flex flex-col gap-3 max-w-[620px]">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#39F763]/15 border border-[#39F763]/30 text-[#39F763] text-xs font-sans font-medium w-fit">

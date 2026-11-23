@@ -104,7 +104,7 @@ const SUITE_TABS: {
     cards: [
       {
         name: "Starter Program",
-        description: "7-day intensive hands-on foundation in Linux, networking, and ethical hacking essentials for ₹999.",
+        description: "7-day intensive hands-on foundation in Linux, networking, and ethical hacking essentials for ₹499.",
         icon: GraduationCap,
         iconColor: "#714cb6",
         link: "/courses",

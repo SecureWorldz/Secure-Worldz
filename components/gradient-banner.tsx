@@ -30,7 +30,7 @@ export default function GradientBanner() {
           </h2>
 
           <p className="text-[16px] font-[460] text-[#292827]/80 leading-[1.4] max-w-[540px]">
-            Whether you are taking your first steps with our ₹999 starter cohort or running complex VAPT engagements, SECUREWORLDZ brings tools, labs, and guidance into one workspace.
+            Whether you are taking your first steps with our ₹499 starter cohort or running complex VAPT engagements, SECUREWORLDZ brings tools, labs, and guidance into one workspace.
           </p>
         </div>
 

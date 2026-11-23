@@ -8,6 +8,8 @@ export interface BlogPost {
   excerpt: string
   metaDescription: string
   content: string[]
+  /** Optional full Markdown body written from the admin app. */
+  markdown?: string
   tags: string[]
   readTime: string
 }

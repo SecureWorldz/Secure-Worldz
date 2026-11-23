@@ -1,6 +1,6 @@
 "use client"
 
-import { PRODUCTS } from "@/lib/data/products"
+import { useContent } from "@/hooks/use-content"
 import {
   Layers,
   Cpu,
@@ -38,13 +38,14 @@ function getProductIcon(id: string) {
 }
 
 export default function ProductsSection() {
-  const tools = PRODUCTS.filter((p) => p.category === "Tool")
-  const lab = PRODUCTS.find((p) => p.category === "Lab")
+  const products = useContent("products")
+  const tools = products.filter((p) => p.category === "Tool")
+  const lab = products.find((p) => p.category === "Lab")
 
   return (
     <section id="products" className="w-full border-b border-[rgba(55,50,47,0.12)] flex flex-col justify-center items-center">
       {/* Header Section */}
-      <div className="self-stretch px-4 sm:px-6 md:px-24 py-12 md:py-16 border-b border-[rgba(55,50,47,0.12)] flex justify-center items-center">
+      <div className="content-container py-12 md:py-16 border-b border-[rgba(55,50,47,0.12)] flex justify-center items-center">
         <ScrollReveal className="w-full max-w-[680px] flex flex-col justify-start items-center gap-4 text-center">
           {/* Badge */}
           <div className="px-[14px] py-[6px] bg-white shadow-[0px_0px_0px_4px_rgba(55,50,47,0.05)] rounded-[90px] flex items-center gap-2 border border-[rgba(2,6,23,0.08)]">
@@ -63,8 +64,8 @@ export default function ProductsSection() {
 
       {/* Featured AI Lab Hero Block */}
       {lab && (
-        <div className="w-full border-b border-[rgba(55,50,47,0.12)] bg-white/70 p-6 sm:p-10 md:p-12">
-          <ScrollReveal direction="up" distance={20} className="max-w-[960px] mx-auto flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
+        <div className="w-full border-b border-[rgba(55,50,47,0.12)] bg-white/70 py-6 sm:py-10 md:py-12">
+          <ScrollReveal direction="up" distance={20} className="content-container flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
             <div className="flex-1 flex flex-col gap-3">
               <div className="flex items-center gap-2">
                 <span className="px-2.5 py-1 rounded-full bg-[#181716] text-[#39F763] text-[11px] font-semibold tracking-wide uppercase font-sans">
@@ -119,29 +120,14 @@ export default function ProductsSection() {
         </div>
       )}
 
-      {/* Connected Editorial Grid for the 7 Tools */}
-      <div className="self-stretch flex justify-center items-start">
-        {/* Left decorative hatch */}
-        <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch relative overflow-hidden hidden sm:block">
-          <div className="w-[120px] left-[-40px] top-[-120px] absolute flex flex-col">
-            {Array.from({ length: 120 }).map((_, i) => (
-              <div
-                key={i}
-                className="self-stretch h-3 rotate-[-45deg] origin-top-left outline outline-[0.5px] outline-[rgba(3,7,18,0.08)] outline-offset-[-0.25px]"
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* 7 Tools in Clean Editorial Blocks */}
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-l border-r border-[rgba(55,50,47,0.12)]">
+      {/* 7 Tools in Clean Editorial Blocks */}
+      <div className="content-container py-8 sm:py-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {tools.map((tool, index) => (
             <ScrollReveal
               key={tool.id}
               delay={index * 60}
-              className={`p-6 sm:p-8 flex flex-col justify-between items-start gap-4 border-b border-[rgba(55,50,47,0.12)] bg-[#F7F5F3] hover:bg-white transition-all duration-300 group ${
-                index % 3 !== 2 ? "lg:border-r border-[rgba(55,50,47,0.12)]" : ""
-              } ${index % 2 === 0 ? "md:border-r lg:border-r-0 border-[rgba(55,50,47,0.12)]" : ""}`}
+              className="w-full bg-white rounded-2xl p-6 sm:p-8 border border-[rgba(55,50,47,0.1)] shadow-xs hover:border-[#39F763]/40 hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between items-start gap-4 group"
             >
               <div className="flex flex-col gap-3 w-full">
                 <div className="flex justify-between items-center w-full">
@@ -181,18 +167,6 @@ export default function ProductsSection() {
               </div>
             </ScrollReveal>
           ))}
-        </div>
-
-        {/* Right decorative hatch */}
-        <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch relative overflow-hidden hidden sm:block">
-          <div className="w-[120px] left-[-40px] top-[-120px] absolute flex flex-col">
-            {Array.from({ length: 120 }).map((_, i) => (
-              <div
-                key={i}
-                className="self-stretch h-3 rotate-[-45deg] origin-top-left outline outline-[0.5px] outline-[rgba(3,7,18,0.08)] outline-offset-[-0.25px]"
-              />
-            ))}
-          </div>
         </div>
       </div>
     </section>

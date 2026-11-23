@@ -1,0 +1,50 @@
+[
+  {
+    "id": "how-to-do-vibe-hacking-for-free",
+    "title": "How to do vibe hacking for free?",
+    "status": "Upcoming",
+    "date": "October 30, 2026",
+    "time": "To be scheduled",
+    "mode": "Live Interactive Session / Community Stream",
+    "facilitator": "Cyber Jai & SECUREWORLDZ Team",
+    "excerpt": "A hands-on workshop exploring prompt-driven experimentation, AI security testing workflows, and finding vulnerabilities without expensive tooling.",
+    "description": "Explore the emerging practice of 'vibe hacking'—using natural language prompting and intelligent agents to inspect code, automate security research, and understand system boundaries safely in dedicated lab environments.",
+    "topics": [
+      "Introduction to Vibe Hacking & AI-assisted security workflows",
+      "Using open & free AI tools for defensive security analysis",
+      "Prompt crafting for vulnerability discovery and code auditing",
+      "Hands-on demo: Exploring boundary checks in isolated environments",
+      "Ethics, permissions, and avoiding unintended security fallout"
+    ],
+    "whoShouldAttend": [
+      "Cybersecurity students and enthusiasts",
+      "Developers interested in AI safety and secure coding",
+      "Penetration testers exploring modern prompt workflows"
+    ],
+    "registrationOpen": true,
+    "order": 1
+  },
+  {
+    "id": "dragoz-community-meetup-2026",
+    "title": "DRAGOZ Community Meetup 2026",
+    "status": "Completed",
+    "date": "September 3, 2026",
+    "time": "Full Day Meetup",
+    "mode": "Prathyusha Engineering College, Tiruvallur",
+    "facilitator": "SECUREWORLDZ Leadership & Community Leads",
+    "excerpt": "A landmark gathering of 300+ cybersecurity enthusiasts, student researchers, and community builders featuring live demos and networking.",
+    "description": "Held on September 3, 2026, at Prathyusha Engineering College, this national community meetup brought students together for deep dives into VAPT, hands-on labs, and collaborative internship networking.",
+    "topics": [
+      "Practical VAPT & live penetration testing demonstrations",
+      "Student project showcases & tool demonstrations",
+      "Discord intern interaction and community roadmap reveal"
+    ],
+    "whoShouldAttend": [
+      "DRAGOZ Community Members",
+      "College Students",
+      "Security Interns"
+    ],
+    "registrationOpen": false,
+    "order": 2
+  }
+]
